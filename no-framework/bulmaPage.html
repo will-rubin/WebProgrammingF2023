@@ -113,6 +113,35 @@
                         <a href="#" class="card-footer-item">Edit</a>
                     </div>
                 </div>
+                <div class="card">
+                  <header class="card-header">
+                      <p class="card-header-title">
+                          My Second Bulma Card
+                      </p>
+                      <button class="card-header-icon">
+                          <span class="icon">
+                            <i class="fas fa-angle-down"></i>
+                          </span>
+                      </button>
+                  </header>
+                  <div class="card-image"> 
+                      <figure class="img is-4by3">
+                          <img src="https://www.nwf.org/-/media/NEW-WEBSITE/Shared-Folder/Wildlife/Invertebrates/invertebrate_octopus_600x300.ashx" alt="Octopus">
+                      </figure>
+                  </div>
+                  <div class="card-content">
+                      <div class="content">
+                          This is an <a href=#>octopus</a>.
+                          <br>
+                          <time datetime="2023-10-9">16:21 Sept. 10, 2023</time>
+                      </div>
+                  </div>
+                  <div class="card-footer">
+                      <a href="#" class="card-footer-item">Help</a>
+                      <a href="#" class="card-footer-item">New</a>
+                      <a href="#" class="card-footer-item">Edit</a>
+                  </div>
+              </div>
             </div>
             <div class="column">
                 <div class="panel">
@@ -136,6 +165,12 @@
                                     <span>Completed</span>
                                 </a>    
                             </li>
+                            <li>
+                              <a>
+                                  <span class="icon is-small"><i class="fas fa-temperature-high"></i></span>
+                                  <span>All</span>
+                              </a>    
+                          </li>
                         </ul>
                     </div>
                     <div class="panel-block">
@@ -160,12 +195,86 @@
                         Climbing beans
                     </a>
                 </div>
+                <form action="" class="box">
+                  <div class="field">
+                    <label class="label">Name</label>
+                    <div class="control has-icons-left has-icons-right">
+                      <input class="input" type="text" placeholder="Your name:">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-user"></i>
+                      </span>
+                      <span class="icon is-small is-right">
+                        <i class="fas fa-check"></i>
+                      </span>
+                      <p class="help is-success">Enter your name</p>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">Username</label>
+                    <div class="control has-icons-left has-icons-right ">
+                      <input class="input is-alert" type="text" placeholder="Your name here:">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-smile"></i>
+                      </span>
+                      <span class="icon is-small is-right">
+                        <i class="fas fa-smile"></i>
+                      </span>
+                      <p class="help is-success">Enter your username</p>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">Email</label>
+                    <div class="control has-icons-left has-icons-right">
+                      <input class="input is-primary" type="text" placeholder="Text input">
+                      <span class="icon is-small is-left">
+                        <i class="fas fa-exclamation"></i>
+                      </span>
+                      <span class="icon is-small is-right">
+                        <i class="fas fa-radiation"></i>
+                      </span>
+                      <p class="help is-success">Enter your email address</p>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">Subject</label>
+                    <div class="select">
+                      <select>
+                        <option>Select a dropdown</option>
+                        <option>With options</option>
+                      </select>
+                    </div>
+                  </div>
+                  <div class="field">
+                    <label class="label">Message</label>
+                    <div class="control">
+                      <textarea class="textarea" placeholder="Type your message:"></textarea>
+                    </div>
+                  </div>
+                </form>
                 <div class="columns">
                     <div class="column">
-
+                      <article class="message is-primary">
+                        <div class="message-header"> 
+                          <p>Lorem ipsum dolor</p>
+                          <button class="delete" aria-label="delete"></button>
+                        </div>
+                        <div class="message-body"> 
+                          <p>Sit amet, consectetur
+                          adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur.</p>
+                        </div>
+                      </article>
                     </div>
                     <div class="column">
-                        
+                      <div class="notification is-danger">
+                        <button class="delete" aria-label="delete"></button>
+                          <p>Lorem ipsum dolor sit amet, consectetur
+                             adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur.</p>
+                      </div>
+                      <div class="notification is-success">
+                        <button class="delete" aria-label="delete"></button>
+                          <p>Lorem ipsum dolor sit amet, consectetur
+                             adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur.</p>
+                      </div>
                     </div>
                 </div>
             </div>
