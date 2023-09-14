@@ -121,5 +121,13 @@
     
 
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.min.js"></script>
+    <script>
+        $(function() {
+            $('.delete').click(function() {
+                $(this).closest('.notification').hide();
+            });
+        });
+    </script>
 </body>
 </html>
