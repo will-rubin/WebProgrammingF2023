@@ -22,14 +22,14 @@
         </div>
         <div class="navbar-menu"> <!-- want to make a floating navbar on bottom eventually -->
             <div class="navbar-start">
-                <a class="navbar-item" href="index.html">
+                <a class="navbar-item is-active" href="index.html">
                     Home
+                </a>
+                <a class="navbar-item" href="following.html">
+                    Following
                 </a>
                 <a class="navbar-item" href="about.html">
                     About
-                </a>
-                <a class="navbar-item" href="contact.html">
-                    Contact
                 </a>
             </div>
             <div class="navbar-end">
@@ -63,10 +63,66 @@
     <div class="section">
         <div class="container">
             <div class="columns">
-                <div class="column is-one-quarter"> <!---->
-
+                <div class="column is-one-quarter ml-0"> <!---->
+                    <nav class="panel">
+                        <p class="panel-heading">
+                          Recommended Posts
+                        </p>
+                        <div class="panel-block">
+                          <p class="control has-icons-left">
+                            <input class="input" type="text" placeholder="Search">
+                            <span class="icon is-left">
+                              <i class="fas fa-search" aria-hidden="true"></i>
+                            </span>
+                          </p>
+                        </div>
+                        <p class="panel-tabs">
+                          <a class="is-active">All</a>
+                          <a>Popular</a>
+                          <a>Newest</a>
+                        </p>
+                        <article class="media">
+                            <figure class="media-left">
+                              <p class="image is-64x64">
+                                <img src="https://bulma.io/images/placeholders/128x128.png">
+                              </p>
+                            </figure>
+                            <div class="media-content">
+                              <div class="content">
+                                <p>
+                                  <strong>John Smith</strong> <small>@johnsmith</small> <small>31m</small>
+                                  <br>
+                                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ornare magna eros, eu pellentesque tortor vestibulum ut. Maecenas non massa sem. Etiam finibus odio quis feugiat facilisis.
+                                </p>
+                              </div>
+                              <nav class="level is-mobile">
+                                <div class="level-left">
+                                  <a class="level-item">
+                                    <span class="icon is-small"><i class="fas fa-reply"></i></span>
+                                  </a>
+                                  <a class="level-item">
+                                    <span class="icon is-small"><i class="fas fa-retweet"></i></span>
+                                  </a>
+                                  <a class="level-item">
+                                    <span class="icon is-small"><i class="fas fa-heart"></i></span>
+                                  </a>
+                                </div>
+                              </nav>
+                            </div>
+                            <div class="media-right">
+                              <button class="delete"></button>
+                            </div>
+                          </article>
+                    </nav> <!--end of panel-->
                 </div>
-                <div class="column is-one-half"> <!--column to contain and show posts depending on selected timeline-->
+                <div class="columns"> <!--column to contain and show posts depending on selected timeline-->
+                   <div class="column is-one-half">
+
+                   </div>
+                   <div class="column is-one-half">
+                     <div class="panel">
+                     </div>
+                   </div>
 
                 </div>
                 <div class="column is-one-quarter"> <!---->
