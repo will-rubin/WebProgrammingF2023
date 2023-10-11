@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+
 </script>
 
 <template>
   <main>
-    <TheWelcome />
+    <h1 class="title">Welcome to Exercise Tracker</h1>
+    <h2 class="subtitle">This is a simple app to track your exercises</h2>
   </main>
 </template>
