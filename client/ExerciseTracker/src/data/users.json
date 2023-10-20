@@ -2,27 +2,35 @@
     "users": [
         {
             "id": 1,
-            "name": "John Doe",
+            "firstName": "John",
+            "lastName": "Doe",
             "email": "john@doe.com",
-            "password": "1345678"
+            "password": "1345678",
+            "role": "admin"
         },
         {
             "id": 2,
-            "name": "Jane Doe",
+            "firstName": "Jane",
+            "lastName": "Doe",
             "email": "jane@doe.com",
-            "password": "1235678"
+            "password": "1235678",
+            "role": "user"
         },
         {
             "id": 3,
-            "name": "John Smith",
-            "email": "john@smith.com",
-            "password": "1234568"
+            "firstName": "Jon",
+            "lastName": "Smith",
+            "email": "jon@smith.com",
+            "password": "1234568",
+            "role": "user"
         },
         {
             "id": 4,
-            "name": "Jane Smith",
+            "firstName": "Jane",
+            "lastName": "Smith",
             "email": "jane@smith.com",
-            "password": "123456"
+            "password": "123456",
+            "role": "user"
         }
     ]
 }

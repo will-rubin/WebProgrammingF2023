@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
+import LoginBadge from './LoginBadge.vue';
+import { getCurrentUser } from '@/model/session';
 
+const user = getCurrentUser();
 const isActive = ref(false)
 </script>
 
@@ -32,57 +35,11 @@ const isActive = ref(false)
                 </router-link>
             </li>
         </ul>
-        <p class="menu-label">
-        <b>Exercise</b>
-        </p>
-        <ul class="menu-list" :class="{ 'is-active': isActive}">
-            <li>
-                <router-link to="/exercises" exact>
-                    <span class="icon-text">
-                        <span class="icon">
-                            <i class="fas fa-book"></i>
-                        </span>
-                        <span>My Exercises</span>
-                    </span>
-                </router-link>
-            </li>
-            <li>
-                <router-link to="/exercises" exact>
-                    <span class="icon-text">
-                        <span class="icon">
-                            <i class="fas fa-book"></i>
-                        </span>
-                        <span>Friends' Exercise</span>
-                    </span>
-                </router-link>
-            </li>
-        </ul>
-        <p class="menu-label">
-        <b>Plans</b>
-        </p>
-        <ul class="menu-list" :class="{ 'is-active': isActive}">
-            <li>
-                <router-link to="/exercises" exact>
-                    <span class="icon-text">
-                        <span class="icon">
-                            <i class="fas fa-book"></i>
-                        </span>
-                        <span>Plans</span>
-                    </span>
-                </router-link>
-            </li>
-            <li>
-                <router-link to="/exercises" exact>
-                    <span class="icon-text">
-                        <span class="icon">
-                            <i class="fas fa-book"></i>
-                        </span>
-                        <span>Create Plan</span>
-                    </span>
-                </router-link>
-            </li>
-        </ul>
     </aside>
+    
+    <div class="box has-text-centered">
+        <LoginBadge />
+    </div>
 </template>
 
 <style scoped>
@@ -93,4 +50,5 @@ const isActive = ref(false)
     .menu {
         padding: 20px;
     }
+
 </style>
