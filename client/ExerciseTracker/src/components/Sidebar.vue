@@ -51,6 +51,16 @@ const isActive = ref(false)
                     </span>
                 </router-link>
             </li>
+            <li>
+                <router-link to="/myExercises" exact>
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="fas fa-book"></i>
+                        </span>
+                        <span>My Exercises & Statistics</span>
+                    </span>
+                </router-link>
+            </li>
         </ul>
     </aside>
     
