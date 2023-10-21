@@ -45,7 +45,7 @@ const isActive = ref(false)
                 <router-link to="/admin" exact>
                     <span class="icon-text">
                         <span class="icon">
-                            <i class="fas fa-book"></i>
+                            <i class="fas fa-sitemap"></i>
                         </span>
                         <span>Admin</span>
                     </span>
@@ -55,9 +55,29 @@ const isActive = ref(false)
                 <router-link to="/myExercises" exact>
                     <span class="icon-text">
                         <span class="icon">
-                            <i class="fas fa-book"></i>
+                            <i class="fas fa-running"></i>
                         </span>
-                        <span>My Exercises & Statistics</span>
+                        <span>My Exercises</span>
+                    </span>
+                </router-link>
+            </li>
+            <li>
+                <router-link to="/myExercises" exact>
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="fas fa-user-clock"></i>
+                        </span>
+                        <span>My Statistics</span>
+                    </span>
+                </router-link>
+            </li>
+            <li>
+                <router-link to="/myExercises" exact>
+                    <span class="icon-text">
+                        <span class="icon">
+                            <i class="fas fa-user-friends"></i>
+                        </span>
+                        <span>Friend's Exercises</span>
                     </span>
                 </router-link>
             </li>
