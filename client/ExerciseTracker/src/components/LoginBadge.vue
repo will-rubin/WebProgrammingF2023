@@ -1,16 +1,19 @@
 <script setup lang="ts">
     import { getSession, useLogin } from '@/model/session'
+    import { type User, getUsers } from '@/model/users'
+
+    const users = getUsers()
 
     const session = getSession()
 
     const { login, logout } = useLogin()
 
-    const doLogin1 = () => {
-        login("john@doe.com", "1345678");
+    function doLogin(user: User) {
+        login(user.email, user.password);
     }
 
-    const doLogin2 = () => {
-        login("jane@doe.com", "1235678");
+    function doLogin2() {
+    login("jane@doe.com", "1235678");
     }
 
     const doLogin3 = () => {
@@ -24,7 +27,7 @@
 
 <template>
     <div class="has-text-centered" v-if="session.user">
-        Welcome, {{ session.user.firstName }} {{ session.user.lastName }}! <br />
+        <strong>Welcome, {{ session.user.firstName }} {{ session.user.lastName }}!</strong> <br />
         <small>
             {{ session.user.email }}
             <a class="button is-small is-light is-warning" @click.prevent="doLogout">
@@ -35,20 +38,15 @@
         </small>
     </div>
     <div v-else>
-        <div class="control">
-            <label class="radio">
-                <input type="radio" name="answer" @click="doLogin1">
-                John Doe (Admin)
-            </label>
-            <label class="radio">
-                <input type="radio" name="answer" @click="doLogin2">
-                Jane Doe
-            </label>
-            <label class="radio">
-                <input type="radio" name="answer" @click="doLogin3">
-                John Smith
-            </label>
-        </div>
+        <div class="panel-heading">Login</div>
+        <label class="panel-block" v-for="user in users">
+            <button class="button is-fullwidth is-primary" @click.prevent="doLogin(user)">
+                <span class="icon">
+                    <i class="fas fa-sign-in-alt"></i>
+                </span>
+                <span>{{ user.firstName }} {{ user.lastName }}: {{ user.role }}</span>
+            </button>
+        </label>
     </div>
 </template>
 
