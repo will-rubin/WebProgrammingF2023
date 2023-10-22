@@ -3,7 +3,7 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import LoginBadge from './LoginBadge.vue';
 import { getCurrentUser } from '@/model/session';
-import ExerciseAdder from './ExerciseAdder.vue';
+
 
 const show = ref(false)
 

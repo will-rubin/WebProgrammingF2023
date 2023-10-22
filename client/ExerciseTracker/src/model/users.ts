@@ -37,7 +37,7 @@ export function editUser(user: User, newid: number, firstName: string, lastName:
 }
 
 
-export function getUserByEmail(email: string): User | undefined {
+export function getUserByEmail(email: string): User | null {
   return getUsers().find( x => x.email === email);
 }
 

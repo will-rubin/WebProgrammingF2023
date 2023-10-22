@@ -7,7 +7,7 @@ const session = getSession()
 const role = session.user?.role
 
 
-let users = getUsers()
+let users = getUsers() as User[]
 
 const selectedUserDeletion = users[0]
 

@@ -3,7 +3,9 @@ import data from '../data/exercisePosts.json'
 
 export interface ExercisePost {
   id: number
-  author: string
+  author?: string
+  fname: string
+  lname: string
   timestamp: string
   location: string
   caption: string
@@ -18,8 +20,20 @@ export function getPosts() {
   return posts;
 }
 
-export function addPost(post: ExercisePost) {
-  posts.push(post);
+export function addPost(id: number, author: string, fname: string, lname: string, timestamp: string, location: string, caption: string, imageURL: string, distance: number, duration: number) {
+  const newPost: ExercisePost = {
+    id: id,
+    author: author,
+    fname: fname,
+    lname: lname,
+    timestamp: timestamp,
+    location: location,
+    caption: caption,
+    imageURL: imageURL,
+    distance: distance,
+    duration: duration
+  }
+  posts.push(newPost);
 }
 
 export function deletePost(post: ExercisePost) {
@@ -28,9 +42,11 @@ export function deletePost(post: ExercisePost) {
 }
 
 
-export function editPost(post: ExercisePost, newid: number, author: string, timestamp: string, location: string, caption: string, imageURL: string, distance: number, duration: number) {
+export function editPost(post: ExercisePost, newid: number, author: string, fname: string, lname: string, timestamp: string, location: string, caption: string, imageURL: string, distance: number, duration: number) {
   post.id = newid;
   post.author = author;
+  post.fname = fname;
+  post.lname = lname;
   post.timestamp = timestamp;
   post.location = location;
   post.caption = caption;
