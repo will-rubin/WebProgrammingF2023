@@ -185,6 +185,7 @@ function editExistingUser(user: User, newIDEdit: number, fName: string, lName: s
                 <div class="panel">
                     <table class="table">
                         <thead>
+                            <label class="label">Users</label>
                             <tr>
                                 <th>ID</th>
                                 <th>First Name</th>
