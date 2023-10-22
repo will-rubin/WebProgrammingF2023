@@ -1,7 +1,8 @@
 <script setup lang="ts">
-    import { getSession, useLogin, getCurrentUser } from '@/model/session'
-    import { type User, users } from '@/model/users'
-    import { ref, reactive } from 'vue'
+    import { getSession, useLogin } from '@/model/session'
+    import { type User, getUsers} from '@/model/users'
+
+    let users = getUsers()
 
     const session = getSession()
 
@@ -17,10 +18,10 @@
 </script>
 
 <template>
-    <div class="has-text-centered" v-if="getCurrentUser()">
-        <strong>Welcome, {{ getCurrentUser()?.firstName }} {{ getCurrentUser()?.lastName }}!</strong> <br />
+    <div class="has-text-centered" v-if="session.user">
+        <strong>Welcome, {{ session.user.firstName }} {{ session.user.lastName }}!</strong> <br />
         <small>
-            {{ getCurrentUser()?.email }}
+            {{ session.user.email }}
             <a class="button is-small is-light is-warning" @click.prevent="doLogout">
                 <span class="icon">
                     <i class="fas fa-sign-out-alt"></i>
@@ -28,7 +29,7 @@
             </a>
         </small>
     </div>
-    <div v-else>
+    <div>
         <div class="panel-heading">Login</div>
         <label class="panel-block" v-for="user in users">
             <button class="button is-fullwidth is-primary" @click.prevent="doLogin(user)">

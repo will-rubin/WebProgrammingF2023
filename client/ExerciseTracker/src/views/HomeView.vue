@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { ref } from 'vue';
 import { getSession } from '@/model/session';
 const session = getSession();
 

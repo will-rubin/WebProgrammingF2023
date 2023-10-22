@@ -1,14 +1,17 @@
 <script setup lang="ts">
-import { type User, users, addUser, editUser, deleteUser } from '@/model/users'
+import { type User, addUser, editUser, deleteUser, getUsers } from '@/model/users'
 import { getSession } from '@/model/session'
 import { ref, reactive } from 'vue'
 
 const session = getSession()
 const role = session.user?.role
 
-let selectedUserDeletion = ref(users[0])
 
-let selectedUser = ref(users[0])
+let users = getUsers()
+
+const selectedUserDeletion = users[0]
+
+const selectedUser = users[0]
 const newIDEdit = ref(0)
 const fNameEdit = ref("")
 const lNameEdit = ref("")
