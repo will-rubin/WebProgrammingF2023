@@ -209,7 +209,7 @@ function editExistingUser(user: User, newIDEdit: number, fName: string, lName: s
     </div>
     <div class="columns" v-else>
         <div class="column has-text-centered">
-            <box>
+            <box class="box">
                <h1>You are not authorized to view this page.</h1>
             </box>
         </div>
