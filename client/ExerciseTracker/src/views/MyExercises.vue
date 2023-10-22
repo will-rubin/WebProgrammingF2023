@@ -5,11 +5,7 @@ const session = getSession();
 </script>
 
 <template>
-    <div class="box" v-if="session.user">
-    <h1>User: {{ session.user?.firstName }}</h1>
-  </div>
-
-  <div class="box" v-else="!session.user">
+  <div class="box" v-if="!session.user">
     <h1>Not logged in! Log in to see your exercises</h1>
   </div>
 

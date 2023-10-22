@@ -22,7 +22,7 @@ export function addUser(user: User) {
 
 export function deleteUser(user: User) {
   const index = users.findIndex( x => x.id === user.id);
-  data.users.splice(index, 1);
+  users.splice(index, 1);
 }
 
 
