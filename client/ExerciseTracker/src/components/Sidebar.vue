@@ -72,7 +72,7 @@ const isActive = ref(false)
                 </router-link>
             </li>
             <li>
-                <router-link to="/myExercises" exact>
+                <router-link to="/Friends" exact>
                     <span class="icon-text">
                         <span class="icon">
                             <i class="fas fa-user-friends"></i>
