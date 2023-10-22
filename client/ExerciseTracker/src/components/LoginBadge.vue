@@ -1,8 +1,7 @@
 <script setup lang="ts">
-    import { getSession, useLogin } from '@/model/session'
-    import { type User, getUsers } from '@/model/users'
-
-    const users = getUsers()
+    import { getSession, useLogin, getCurrentUser } from '@/model/session'
+    import { type User, users } from '@/model/users'
+    import { ref, reactive } from 'vue'
 
     const session = getSession()
 
@@ -11,14 +10,6 @@
     function doLogin(user: User) {
         login(user.email, user.password);
     }
-
-    function doLogin2() {
-    login("jane@doe.com", "1235678");
-    }
-
-    const doLogin3 = () => {
-        login("jon@smith.com", "1234568");
-    }
     
     const doLogout = () => {
         logout();
@@ -26,10 +17,10 @@
 </script>
 
 <template>
-    <div class="has-text-centered" v-if="session.user">
-        <strong>Welcome, {{ session.user.firstName }} {{ session.user.lastName }}!</strong> <br />
+    <div class="has-text-centered" v-if="getCurrentUser()">
+        <strong>Welcome, {{ getCurrentUser()?.firstName }} {{ getCurrentUser()?.lastName }}!</strong> <br />
         <small>
-            {{ session.user.email }}
+            {{ getCurrentUser()?.email }}
             <a class="button is-small is-light is-warning" @click.prevent="doLogout">
                 <span class="icon">
                     <i class="fas fa-sign-out-alt"></i>

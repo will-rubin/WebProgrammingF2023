@@ -6,7 +6,8 @@
             "lastName": "Doe",
             "email": "john@doe.com",
             "password": "1345678",
-            "role": "admin"
+            "role": "admin",
+            "imageURL": "https://www.gravatar.com/avatar/205e460b479e2e5b48aec07710c08d50?s=200"
         },
         {
             "id": 2,
@@ -14,7 +15,9 @@
             "lastName": "Doe",
             "email": "jane@doe.com",
             "password": "1235678",
-            "role": "user"
+            "role": "user",
+            "imageURL": "https://images.pexels.com/photos/3807852/pexels-photo-3807852.jpeg?auto=compress&cs=tinysrgb&w=1600"
+
         },
         {
             "id": 3,
@@ -22,7 +25,8 @@
             "lastName": "Smith",
             "email": "jon@smith.com",
             "password": "1234568",
-            "role": "user"
+            "role": "user",
+            "imageURL": "https://images.pexels.com/photos/3777946/pexels-photo-3777946.jpeg?auto=compress&cs=tinysrgb&w=1600"
         },
         {
             "id": 4,
@@ -30,7 +34,8 @@
             "lastName": "Smith",
             "email": "jane@smith.com",
             "password": "123456",
-            "role": "user"
+            "role": "user",
+            "imageURL": "https://images.pexels.com/photos/1526403/pexels-photo-1526403.jpeg?auto=compress&cs=tinysrgb&w=1600"
         }
     ]
 }
