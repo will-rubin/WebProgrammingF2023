@@ -1,0 +1,125 @@
+{
+    "posts": [
+        {
+            "id": 0,
+            "author": "john@doe.com",
+            "fname": "John",
+            "lname": "Doe",
+            "timestamp": "2015-01-01T00:00:00Z",
+            "location": "New York",
+            "caption": "Had a great run!",
+            "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a3/Ludovic_and_Lauren_%288425515069%29.jpg/220px-Ludovic_and_Lauren_%288425515069%29.jpg",
+            "distance": 2.75,
+            "duration": 30
+        },
+        {   
+            "id": 1,
+            "author": "jane@doe.com",
+            "fname": "Jane",
+            "lname": "Doe",
+            "timestamp": "2015-01-01T00:00:00Z",
+            "location": "New York",
+            "caption": "Had a terrible run!",
+            "imageURL": "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cc/Long_Distance_Runners%2C_Ancient_Greece%2C_Amphora.png/220px-Long_Distance_Runners%2C_Ancient_Greece%2C_Amphora.png",
+            "distance": 2.75,
+            "duration": 30
+        },
+        {   
+            "id": 2,
+            "author": "jon@smith.com",
+            "fname": "Jon",
+            "lname": "Smith",
+            "timestamp": "2015-01-01T00:00:00Z",
+            "location": "New York",
+            "caption": "Played a great game of basketball!",
+            "imageURL": "https://blog.bonsecours.com/wp-content/uploads/2023/02/Ben-Risks-of-Running-1200x610.jpg",
+            "distance": 2.75,
+            "duration": 30
+        },
+        {   
+            "id": 3,
+            "author": "jane@smith.com",
+            "fname": "Jane",
+            "lname": "Smith",
+            "timestamp": "2015-01-01T00:00:00Z",
+            "location": "Arizona",
+            "caption": "I set a new benchpress record!!",
+            "imageURL": "http://example.com/image.jpg",
+            "distance": 2.75,
+            "duration": 30
+        },
+        {   
+            "id": 4,
+            "author": "john@doe.com",
+            "fname": "John",
+            "lname": "Doe",
+            "timestamp": "2015-01-01T00:00:00Z",
+            "location": "New York",
+            "caption": "Had a great run!",
+            "imageURL": "http://example.com/image.jpg",
+            "distance": 2.75,
+            "duration": 30
+        },
+        {   
+            "id": 5,
+            "author": "john@doe.com",
+            "fname": "John",
+            "lname": "Doe",
+            "timestamp": "2015-01-01T00:00:00Z",
+            "location": "New York",
+            "caption": "Had a great run!",
+            "imageURL": "http://example.com/image.jpg",
+            "distance": 2.75,
+            "duration": 30
+        },
+        {   
+            "id": 6,
+            "author": "john@doe.com",
+            "fname": "John",
+            "lname": "Doe",
+            "timestamp": "2015-01-01T00:00:00Z",
+            "location": "New York",
+            "caption": "Had a great run!",
+            "imageURL": "http://example.com/image.jpg",
+            "distance": 2.75,
+            "duration": 30
+        },
+        {   
+            "id": 7,
+            "author": "john@doe.com",
+            "fname": "John",
+            "lname": "Doe",
+            "timestamp": "2015-01-01T00:00:00Z",
+            "location": "New York",
+            "caption": "Had a great run!",
+            "imageURL": "http://example.com/image.jpg",
+            "distance": 2.75,
+            "duration": 30
+        },
+        {   
+            "id": 8,
+            "author": "john@doe.com",
+            "fname": "John",
+            "lname": "Doe",
+            "timestamp": "2015-01-01T00:00:00Z",
+            "location": "New York",
+            "caption": "Had a great run!",
+            "imageURL": "http://example.com/image.jpg",
+            "distance": 2.75,
+            "duration": 30
+        },
+        {   
+            "id": 9,
+            "author": "john@doe.com",
+            "fname": "John",
+            "lname": "Doe",
+            "timestamp": "2015-01-01T00:00:00Z",
+            "location": "New York",
+            "caption": "Had a great run!",
+            "imageURL": "http://example.com/image.jpg",
+            "distance": 2.75,
+            "duration": 30
+        }
+
+    ]
+}
