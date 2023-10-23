@@ -30,7 +30,7 @@
         </small>
     </div>
     <div>
-        <div class="panel-heading">Login</div>
+        <div class="panel-heading" v-if="!session.user">Login</div>
         <label class="panel-block" v-for="user in users">
             <button class="button is-fullwidth is-primary" @click.prevent="doLogin(user)">
                 <span class="icon">

@@ -22,7 +22,7 @@ const durationTotal = computed(() => {
             total += posts[i].duration;
         }
     }
-    return total;
+    return total/60;
 });
 
 const averagePace = computed(() => {
@@ -30,7 +30,7 @@ const averagePace = computed(() => {
 });
 
 const caloriesBurnt = computed(() => {
-    return durationTotal.value * 3.5;
+    return durationTotal.value * 350;
 });
 
 </script>

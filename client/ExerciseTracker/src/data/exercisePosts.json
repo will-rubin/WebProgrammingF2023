@@ -86,27 +86,27 @@
         },
         {   
             "id": 7,
-            "author": "john@doe.com",
+            "author": "john@smith.com",
             "fname": "John",
-            "lname": "Doe",
+            "lname": "Smith",
             "timestamp": "2015-01-01T00:00:00Z",
             "location": "New York",
             "caption": "Had a great run!",
             "imageURL": "http://example.com/image.jpg",
-            "distance": 2.75,
-            "duration": 30
+            "distance": 100,
+            "duration": 450
         },
         {   
             "id": 8,
-            "author": "john@doe.com",
-            "fname": "John",
+            "author": "jane@doe.com",
+            "fname": "Jane",
             "lname": "Doe",
             "timestamp": "2015-01-01T00:00:00Z",
-            "location": "New York",
+            "location": "Napa, California",
             "caption": "Had a great run!",
             "imageURL": "http://example.com/image.jpg",
-            "distance": 2.75,
-            "duration": 30
+            "distance": 5.4,
+            "duration": 180
         },
         {   
             "id": 9,
