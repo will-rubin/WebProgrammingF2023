@@ -7,7 +7,7 @@ import { ref } from 'vue';
 
 const user = getSession().user;
 
-const email = user.email;
+const email = user?.email;
 
 const posts = ref(getPostsByEmail(email));
 
@@ -73,7 +73,7 @@ const selectedPost = ref(getPosts()[selectedPostID.value]);
                 </div>
                 <div class="field">
                     <div class="control">
-                        <button class="is-link" @click="incrementId(), addPost(id, currentAuthor, fname, lname, timestamp, location, caption, imageURL, distance, duration)">Add Post</button>
+                        <button class="is-link" @click="incrementId(), addPost(id, timestamp, location, caption, imageURL, distance, duration, currentAuthor, fname, lname)">Add Post</button>
                     </div>
                 </div>
             </div>

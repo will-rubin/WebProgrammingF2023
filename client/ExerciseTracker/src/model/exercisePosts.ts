@@ -3,15 +3,15 @@ import data from '../data/exercisePosts.json'
 
 export interface ExercisePost {
   id: number
-  author?: string
-  fname?: string
-  lname?: string
   timestamp: string
   location: string
   caption: string
   imageURL: string
   distance: number
   duration: number
+  author?: string
+  fname?: string
+  lname?: string
 }
 
 const posts = data.posts.map( x => ({...x}) ) as ExercisePost[];
@@ -20,18 +20,18 @@ export function getPosts() {
   return posts;
 }
 
-export function addPost(id: number, author: string, fname: string, lname: string, timestamp: string, location: string, caption: string, imageURL: string, distance: number, duration: number) {
+export function addPost(id: number, timestamp: string, location: string, caption: string, imageURL: string, distance: number, duration: number, author?: string, fname?: string, lname?: string,) {
   const newPost: ExercisePost = {
     id: id,
-    author: author,
-    fname: fname,
-    lname: lname,
     timestamp: timestamp,
     location: location,
     caption: caption,
     imageURL: imageURL,
     distance: distance,
-    duration: duration
+    duration: duration,
+    author: author,
+    fname: fname,
+    lname: lname
   }
   posts.push(newPost);
 }
