@@ -10,7 +10,10 @@ export interface User {
   imageURL: string
 }
 
-const users = data.users.map( x => ({...x}) ) as User[];
+//Change as of 11/27/2023: We will now export a const users that is a copy of the data.users array.
+//Now, when we call addUsers, we will push to the users array, and not the data.users array.
+//Which will help us represent the users array in real time across the app, insha'Allah.
+export const users = data.users.map( x => ({...x}) ) as User[];
 
 export function getUsers() {
   return users;

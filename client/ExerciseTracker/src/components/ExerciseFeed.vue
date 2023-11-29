@@ -22,6 +22,9 @@ const imageURL = ref("ImageURL");
 const distance = ref(0.0);
 const duration = ref(0.0);
 
+
+//this is very bad, we insead need to get the max id from the database itself, 
+//This violates MVC principles
 function incrementId() {
     id.value++;
 }

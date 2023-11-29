@@ -1,8 +1,9 @@
 <script setup lang="ts">
     import { getSession, useLogin } from '@/model/session'
-    import { type User, getUsers} from '@/model/users'
+    import { type User, getUsers, users } from '@/model/users'
+    import { reactive } from 'vue';
 
-    let users = getUsers()
+    const myUsers = reactive(users)
 
     const session = getSession()
 
@@ -31,14 +32,16 @@
     </div>
     <div>
         <div class="panel-heading" v-if="!session.user">Login</div>
-        <label class="panel-block" v-for="user in users">
-            <button class="button is-fullwidth is-primary" @click.prevent="doLogin(user)">
-                <span class="icon">
-                    <i class="fas fa-sign-in-alt"></i>
-                </span>
-                <span>{{ user.firstName }} {{ user.lastName }}: {{ user.role }}</span>
-            </button>
-        </label>
+        <div>
+            <label class="panel-block" v-for="user in myUsers">
+                <button class="button is-fullwidth is-primary" @click.prevent="doLogin(user)">
+                    <span class="icon">
+                        <i class="fas fa-sign-in-alt"></i>
+                    </span>
+                    <span>{{ user.firstName }} {{ user.lastName }}: {{ user.role }}</span>
+                </button>
+            </label>
+        </div>
     </div>
 </template>
 

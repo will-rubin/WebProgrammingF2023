@@ -2,8 +2,8 @@
 import ExerciseFeed from '@/components/ExerciseFeed.vue';
 import { getSession } from '@/model/session';
 import { type ExercisePost, getPosts} from '@/model/exercisePosts';
-import { ref } from 'vue';
-const posts = ref(getPosts());
+import { reactive } from 'vue';
+const posts = reactive(getPosts());
 const session = getSession();
 
 </script>
