@@ -1,3 +1,4 @@
+//in sha' Allah 
 /**
  * @typedef {Object} Post
  * @property {number} id
@@ -14,21 +15,73 @@
 
 const data = require('../data/posts.json');
 
+//gets all the posts
 /**
  * @returns {Post[]}
  */
-function getPosts() {
+function getAllPosts() {
   return data.posts;
 }
 
+//gets a single post by its id
 /**
  * @param {number} id - The product's ID.
  */
-function getPostById(id) {
+function get(id) {
     return data.posts.find((post) => post.id === id);
 }
 
+//search for a post 
+/**
+ * @param {string} query - The query string.
+ * @returns {Post[]} - The filtered posts.
+ */
+function search(query) {
+    return data.posts.filter((post) => {
+      return post.caption.includes(query) || post.location.includes(query);
+    });
+}
+
+//creates a new post
+/**
+ * @param {Post} post - The post to be created.
+ * @returns {Post} - The created post.
+ */
+function create(post) {
+    const newPost = {
+      id: data.posts.length + 1,
+      ...post,
+    };
+    data.posts.push(newPost);
+    return newPost;
+}
+
+//updates a post
+/**
+ * @param {Post} post - The post to be updated.
+ * @returns {Post} - The updated post.
+ */
+function update(post) {
+    const index = data.posts.findIndex((p) => p.id === post.id);
+    if(index === -1) {
+      throw new Error('Post not found');
+    }
+    data.posts[index] = post;
+    return data.posts[index];
+}
+
+//deletes a post
+/**
+ * @param {number} id - The post's ID.
+ */
+function remove(id) {
+    const index = data.posts.findIndex((post) => post.id === id);
+    if(index === -1) {
+      throw new Error('Post not found');
+    }
+    data.posts.splice(index, 1);
+}
+
 module.exports = {
-    getPosts, 
-    getPostById
+    getAllPosts, get, search, create, update, remove
 };

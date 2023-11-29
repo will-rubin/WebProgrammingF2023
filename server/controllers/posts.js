@@ -1,22 +1,39 @@
 const express = require('express');
-const { getPosts, getPostById } = require('../models/posts.js');
+const { getAllPosts, get, search, create, update, remove } = require('../models/posts.js');
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.send(getPosts());
+    res.send(getAllPosts());
 })
 
 .get('/search', (req, res) => {
-    res.send('Search results');
+    const results = search(req.query.q);
+    res.send(results);
 })
 
 .get('/posts/:id', (req, res) => {
-    const post = getPostById(parseInt(req.params.id));
+    const post = get(+req.params.id);
     if (post) {
         res.send(post);
     } else {
         res.status(404).send('Post not found');
     }
+})
+
+.post('/', (req, res, next) => {
+    const post = create(req.body);
+    res.send(post);
+})
+
+.patch('/:id', (req, res, next) => {
+    req.body.id = +req.params.id;
+    const post = update(req.body);
+    res.send(post);
+})
+
+.delete('/:id', (req, res, next) => {
+    remove(+req.params.id);
+    res.send({message: 'Post deleted successfully'});
 });
 
 module.exports = router;
