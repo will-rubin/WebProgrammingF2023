@@ -1,0 +1,21 @@
+{
+    "name": "fall-2023",
+    "version": "1.0.0",
+    "description": "",
+    "author": "",
+    "license": "ISC",
+  
+    "scripts": {
+      "start": "node server/index.js",
+      "dev": "nodemon --watch ./server server/index.js"
+    },
+    "dependencies": {
+      "express": "^4.17.20"
+    },
+    "devDependencies": {
+      "@types/node": "20.8.9",
+      "@types/express": "^4.17.20",
+      "nodemon": "^3.0.1"
+    }
+  
+  }
