@@ -80,6 +80,22 @@ function remove(id) {
     data.users.splice(index, 1);
 }
 
+//login
+/**
+ * @param {string} email - The user's email.
+ * @param {string} password - The user's password.
+ */
+function login(email, password) {
+    const user = data.users.find((user) => user.email === email);
+    if(!user) {
+        throw new Error('User not found');
+    }
+    if(user.password !== password) {
+        throw new Error('Password is incorrect');
+    }
+    return user;
+}
+
 module.exports = {
     getAllUsers,
     get,
@@ -87,4 +103,5 @@ module.exports = {
     create,
     update,
     remove,
+    login
 };
