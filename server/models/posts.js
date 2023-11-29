@@ -6,7 +6,7 @@
  * @property {string} location
  * @property {string} caption
  * @property {string} imageURL
- * @property {string} author
+ * @property {string} authorEmail
  * @property {string} fullName
  * @property {string} email
  * @property {number} distance

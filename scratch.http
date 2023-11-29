@@ -1,2 +1,5 @@
 ###
-GET http://localhost:3000/ap1/v1/posts
+GET http://localhost:3000/api/v1/posts
+
+###
+DELETE http://localhost:3000/api/v1/posts/1
