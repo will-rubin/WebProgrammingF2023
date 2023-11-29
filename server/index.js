@@ -18,7 +18,7 @@ app
     .use('/api/v1/posts', postController)
 
     .get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+        res.sendFile(path.join(__dirname, '../client/index.html'));
     })
 
 
