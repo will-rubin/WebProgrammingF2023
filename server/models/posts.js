@@ -1,4 +1,6 @@
 //in sha' Allah 
+
+const { ObjectId, connect } = require('./mongo')
 /**
  * @typedef {Object} Post
  * @property {number} id
@@ -15,12 +17,19 @@
 
 const data = require('../data/posts.json');
 
+const COLLECTION_NAME = 'posts';
+async function getCollection() {
+  const db = await connect();
+  return db.collection(COLLECTION_NAME);
+}
+
 //gets all the posts
 /**
- * @returns {Post[]}
+ * @returns {Promise<Post[]>}
  */
-function getAllPosts() {
-  return data.posts;
+async function getAllPosts() {
+  const col = await getCollection();
+  return col.find({}).toArray();
 }
 
 //gets a single post by its id

@@ -3,7 +3,11 @@ const { getAllPosts, get, search, create, update, remove } = require('../models/
 const router = express.Router();
 
 router.get('/', (req, res) => {
-    res.send(getAllPosts());
+    getAllPosts()
+    .then(posts => {
+        res.send(posts);
+    })
+    .catch(next)
 })
 
 .get('/search', (req, res) => {
