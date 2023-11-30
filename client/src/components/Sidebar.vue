@@ -17,9 +17,7 @@ const isActive = ref(false)
 
 <template>
     <aside class="menu">
-        <p class="menu-label">
-        <b>General</b>
-        </p>
+        
         <ul class="menu-list" :class="{ 'is-active': isActive}">
             <li>
                 <router-link to="/" exact>
@@ -98,6 +96,10 @@ const isActive = ref(false)
     }
     .menu {
         padding: 20px;
+    }
+
+    li {
+        padding: 5px;
     }
 
 

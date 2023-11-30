@@ -1,0 +1,2 @@
+Search function in both users and posts model doesn't seem to be working, maybe ask Prof.
+Besides that, seems okay. The get and delete methods seem to work okay.

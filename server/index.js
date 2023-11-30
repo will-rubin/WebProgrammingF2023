@@ -5,6 +5,7 @@ const path = require('path');
 const express = require('express');
 
 const postController = require('./controllers/posts.js');
+const userController = require('./controllers/users.js');
 
 const app = express();
 
@@ -16,6 +17,8 @@ app
     .use(express.json())
 
     .use('/api/v1/posts', postController)
+
+    .use('/api/v1/users', userController)
 
     .get('*', (req, res) => {
         res.sendFile(path.join(__dirname, '../client/index.html'));

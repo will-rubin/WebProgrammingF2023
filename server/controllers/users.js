@@ -9,8 +9,9 @@ router.get('/', (req, res) => {
 })
 
 .get('/search', (req, res) => {
-    const results = search((String)(req.query.q));
-    res.send(results);
+    const query = String(req.query.q);
+    const users = search(query);
+    res.send(users);
 })  
 
 .get('/users/:id', (req, res) => {

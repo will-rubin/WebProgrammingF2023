@@ -38,7 +38,7 @@ function get(id) {
  */
 function search(query) {
     return data.posts.filter((post) => {
-      return post.caption.includes(query) || post.location.includes(query);
+      post.caption.includes(query) || post.location.includes(query);
     });
 }
 
