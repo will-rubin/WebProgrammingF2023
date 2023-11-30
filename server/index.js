@@ -4,12 +4,16 @@ const path = require('path');
 
 const express = require('express');
 
+require('dotenv').config();
+
 const postController = require('./controllers/posts.js');
 const userController = require('./controllers/users.js');
 
 const app = express();
 
-const PORT = 3000;
+const mongo = require("./models/mongo.js");
+
+const PORT = process.env.PORT ?? 3000;
 
 app
     .use('/', express.static(path.join(__dirname, '../client/dist')))

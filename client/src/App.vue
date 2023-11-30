@@ -1,6 +1,12 @@
 <script setup lang="ts">
 import { RouterView } from 'vue-router'
+import { getSession } from './model/session'
+
 import Sidebar from './components/Sidebar.vue'
+
+const session = getSession()
+
+
 </script>
 
 <template>
@@ -10,13 +16,12 @@ import Sidebar from './components/Sidebar.vue'
       <Sidebar />
     </div>
     <div class="column">
+      <progress class="progress is-small is-primary is-striped" max="100" v-if="session.loading">15%</progress>
       <RouterView />
     </div>
   </div>
 </template>
 
 <style scoped>
-body { 
-  background-color: blue;
-}
+
 </style>

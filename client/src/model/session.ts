@@ -12,12 +12,16 @@ const session = reactive({
     messages: [] as {
         type: string,
         text: string
-    }[]
+    }[],
+    loading: 0
     
 });
 
 export function api(action: string, body: string) {
-    return myFetch.api(`${action}`, `${body}`);
+    session.loading++;
+    return myFetch.api(`${action}`, `${body}`)
+        .catch(err => showError(err))
+        .finally(() => session.loading--);
 }
 
 export function getSession() {
