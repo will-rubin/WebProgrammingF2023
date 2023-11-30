@@ -16,6 +16,13 @@ app
 
     .use(express.json())
 
+    // CORS
+    .use((req, res, next) => {
+        res.header('Access-Control-Allow-Origin', '*');
+        res.header('Access-Control-Allow-Methods', '*');
+        next();
+    })
+
     .use('/api/v1/posts', postController)
 
     .use('/api/v1/users', userController)

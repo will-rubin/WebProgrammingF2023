@@ -1,4 +1,4 @@
-import data from '../data/users.json'
+import { api } from './session';
 
 export interface User {
   id: number
@@ -13,14 +13,14 @@ export interface User {
 //Change as of 11/27/2023: We will now export a const users that is a copy of the data.users array.
 //Now, when we call addUsers, we will push to the users array, and not the data.users array.
 //Which will help us represent the users array in real time across the app, insha'Allah.
-export const users = data.users.map( x => ({...x}) ) as User[];
 
-export function getUsers() {
-  return users;
+
+export function getUsers(): Promise<User[]> {
+  return api("users", "");
 }
 
-export function addUser(user: User) {
-  users.push(user);
+export function addUser(user: User): Promise<User> {
+  return api("users", JSON.stringify(user));
 }
 
 export function deleteUser(user: User) {

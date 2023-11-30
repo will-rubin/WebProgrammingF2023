@@ -8,8 +8,8 @@ const session = reactive({
     redirectURL: null as string | null
 });
 
-export function api(action: string) {
-    return myFetch.api(`${action}`);
+export function api(action: string, body: string) {
+    return myFetch.api(`${action}`, `${body}`);
 }
 
 export function getSession() {

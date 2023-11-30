@@ -7,6 +7,6 @@ export function rest(url: string) {
         .catch(error => console.log(error));
 }
 
-export function api(action: string) {
-    return rest(`${API_ROOT}/${action}`);
+export function api(action: string, body: string) {
+    return rest(`${API_ROOT}/${action}/${body}`);
 }
