@@ -1,17 +1,10 @@
-//express.js
 
 const path = require('path');
-
 const express = require('express');
-
 require('dotenv').config();
-
 const postController = require('./controllers/posts.js');
 const userController = require('./controllers/users.js');
-
 const app = express();
-
-const mongo = require("./models/mongo.js");
 
 const PORT = process.env.PORT ?? 3000;
 
@@ -24,6 +17,10 @@ app
     .use((req, res, next) => {
         res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Methods', '*');
+        res.header('Access-Control-Allow-Headers', '*');
+        if(req.method === 'OPTIONS') {
+            return res.send(200);
+        }
         next();
     })
 
@@ -33,6 +30,14 @@ app
 
     .get('*', (req, res) => {
         res.sendFile(path.join(__dirname, '../client/index.html'));
+    })
+
+app
+    .use((err, req, res, next) => {
+        console.error(err);
+        res
+            .status(500).send(err.message)
+            .json({message: err?.message || err});
     })
 
 

@@ -1,4 +1,4 @@
-//in sha' Allah 
+//Let's not get carried away - just implement CRUD and leave the search for later.
 
 const { ObjectId, connect } = require('./mongo')
 /**
@@ -29,66 +29,90 @@ async function getCollection() {
  */
 async function getAllPosts() {
   const col = await getCollection();
-  return col.find({}).toArray();
+  return await col.toArray();
 }
 
 //gets a single post by its id
 /**
  * @param {number} id - The product's ID.
+ * @returns {Promise<Post>} - The post.
  */
-function get(id) {
-    return data.posts.find((post) => post.id === id);
+async function get(id) {
+    const col = await getCollection();
+    return await col.findOne({ id: id });
 }
 
 //search for a post 
 /**
  * @param {string} query - The query string.
- * @returns {Post[]} - The filtered posts.
+ * @returns {Promise<Post[]>} - The filtered posts.
  */
-function search(query) {
-    return data.posts.filter((post) => {
-      post.caption.includes(query) || post.location.includes(query);
-    });
+async function search(query) {
+
+    const col = await getCollection();
+
+    const posts = await col.find({
+      $or: [
+        { caption: { $regex: query, $options: 'i' } },
+        { location: { $regex: query, $options: 'i' } },
+      ],
+    }).toArray();
+    
+    return posts;
 }
 
 //creates a new post
 /**
  * @param {Post} post - The post to be created.
- * @returns {Post} - The created post.
+ * @returns {Promise<Post>} - The created post.
  */
-function create(post) {
+async function create(post) {
+    const posts = await getAllPosts();
     const newPost = {
-      id: data.posts.length + 1,
+      id: posts.length + 1,
       ...post,
     };
-    data.posts.push(newPost);
+    
+    const col = await getCollection();
+    const result = await col.insertOne(newPost);
+    newPost._id = result._id;
     return newPost;
 }
 
 //updates a post
 /**
  * @param {Post} post - The post to be updated.
- * @returns {Post} - The updated post.
+ * @returns {Promise<Post>} - The updated post.
  */
-function update(post) {
-    const index = data.posts.findIndex((p) => p.id === post.id);
-    if(index === -1) {
-      throw new Error('Post not found');
-    }
-    data.posts[index] = post;
-    return data.posts[index];
+async function update(post) {
+
+  const col = await getCollection();
+  const result = await col.findOneAndUpdate(
+    { id: post.id },
+    { $set: post },
+    { returnDocument: 'after' },
+  );
+  return result;
+
 }
 
 //deletes a post
 /**
  * @param {number} id - The post's ID.
  */
-function remove(id) {
-    const index = data.posts.findIndex((post) => post.id === id);
-    if(index === -1) {
-      throw new Error('Post not found');
+async function remove(id) {
+    const col = await getCollection();
+    const result = await col.deleteOne({ id: id });
+    if(result.deletedCount === 0) {
+      throw new Error(`Post with id ${id} not found`);
     }
-    data.posts.splice(index, 1);
+}
+
+//Seeds the database with the data from posts.json
+async function seed() {
+  const col = await getCollection();
+ 
+  await col.insertMany(data.posts);
 }
 
 module.exports = {
