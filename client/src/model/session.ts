@@ -8,6 +8,7 @@ const toast = useToast();
 
 const session = reactive({
     user: null as User | null,
+    token: null as string | null,
     redirectURL: null as string | null,
     messages: [] as {
         type: string,
@@ -17,9 +18,13 @@ const session = reactive({
     
 });
 
-export function api(action: string, body: string) {
+export function api(action: string, body?: unknown, method?: string, headers?: any) {
     session.loading++;
-    return myFetch.api(`${action}`, `${body}`)
+    if(session.token) {
+        headers = headers ?? {};
+        headers.Authorization = `Bearer ${session.token}`;
+    }
+    return myFetch.api(`${action}`, body, method, headers)
         .catch(err => showError(err))
         .finally(() => session.loading--);
 }
@@ -34,18 +39,24 @@ export function getCurrentUser() {
 
 export function useLogin(){
     const router = useRouter();
-    return async function login(email: string, password: string) {
-        const user = await getUserByEmail(email);
-        if (user && user.password === password) {
-            session.user = user;
-            if (session.redirectURL) {
-                router.push(session.redirectURL);
-                session.redirectURL = null;
-            } else {
-                router.push('/');
+    return {
+        async login(email: string, password: string): Promise<User | null> {
+            const response = await api("users/login", { email, password });
+            if(response.success) {
+                session.user = response.user;
+                session.token = response.token;
+                router.push(session.redirectURL ?? "/");
+                return session.user;
             }
-        } else {
-            alert('Login failed');
+            else {
+                showError(response.error);
+                return null;
+            }
+        },
+        logout() {
+            session.user = null;
+            session.token = null;
+            router.push("/home");
         }
     }
 }

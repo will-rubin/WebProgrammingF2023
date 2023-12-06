@@ -1,8 +1,9 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHistory, type NavigationGuardNext, type RouteLocationNormalized } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
+import { getSession } from '@/model/session'
 
 const router = createRouter({
-  history: createWebHashHistory(import.meta.env.BASE_URL),
+  history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
       path: '/',
@@ -36,6 +37,17 @@ const router = createRouter({
     }
   ]
 })
+
+function requireLogin(to: RouteLocationNormalized, from: RouteLocationNormalized, next: NavigationGuardNext) {
+  const session = getSession()
+  if(!session.user){
+    session.redirectURL = to.fullPath
+    next('/home')
+  }
+  else{
+    next()
+  }
+}
 
 
 export default router
