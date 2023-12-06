@@ -3,7 +3,7 @@ const API_ROOT = import.meta.env.VITE_API_ROOT as string;
 //representational state transfer method: carries out whatever the request is, and returns a promise of whatever the response is
 export function rest(url: string, body?: unknown, method?: string, headers?: any) {
     return fetch(url, {
-        method: method ?? (body ? "POST" : "GET"),
+        method: method,
         headers: {
             "Content-Type": "application/json",
             ...headers

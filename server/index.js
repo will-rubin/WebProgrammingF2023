@@ -4,6 +4,7 @@ const express = require('express');
 require('dotenv').config();
 const postController = require('./controllers/posts.js');
 const userController = require('./controllers/users.js');
+const { parseAuthoritzationToken, requireUser } = require('./middleware/authorization.js');
 const app = express();
 
 const PORT = process.env.PORT ?? 3000;
@@ -18,18 +19,21 @@ app
         res.header('Access-Control-Allow-Origin', '*');
         res.header('Access-Control-Allow-Methods', '*');
         res.header('Access-Control-Allow-Headers', '*');
+        res.header('Access-Control-Allow-Credentials', '*');
         if(req.method === 'OPTIONS') {
             return res.send(200);
         }
         next();
     })
 
+    .use(parseAuthoritzationToken)
+
     .use('/api/v1/posts', postController)
 
     .use('/api/v1/users', userController)
 
     .get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/index.html'));
+        res.sendFile(path.join(__dirname, '../client/dist/index.html'));
     })
 
 app

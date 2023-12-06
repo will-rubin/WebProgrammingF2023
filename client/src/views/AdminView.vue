@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type User, addUser, editUser, deleteUser, getUsers } from '@/model/users'
+import { type User, createUser, updateUser, deleteUser, getUsers } from '@/model/users'
 import { getSession } from '@/model/session'
 import { ref, reactive } from 'vue'
 
@@ -7,48 +7,48 @@ const session = getSession()
 const role = session.user?.role
 
 
-const users = reactive(getUsers())
+const users = ref<User[]>([])
+await getUsers().then((data) => {
+    users.value = data
+})
 
-const selectedUserDeletion = users[0]
+// const selectedUserDeletion = users.value[0]
 
-const selectedUser = users[0]
-const newIDEdit = ref(0)
-const fNameEdit = ref("")
-const lNameEdit = ref("")
-const newEmailEdit = ref("")
-const newPasswordEdit = ref("")
-const newRoleEdit = ref("")
-const newImageURLEdit = ref("")
+// const selectedUser = users.value[0]
+// const newIDEdit = ref(0)
+// const fNameEdit = ref("")
+// const newEmailEdit = ref("")
+// const newPasswordEdit = ref("")
+// const newRoleEdit = ref("")
+// const newImageURLEdit = ref("")
 
 
-const newID = ref(0)
-const fName = ref("")
-const lName = ref("")
-const newEmail = ref("")
-const newPassword = ref("")
-const newRole = ref("")
-const newImageURL = ref("")
+// const newID = ref(0)
+// const fullName = ref("")
+// const newEmail = ref("")
+// const newPassword = ref("")
+// const newRole = ref("")
+// const newImageURL = ref("")
 
-function addNewUser(fName: string, lName: string, newEmail: string, newPassword: string, newRole: string, newImageURL: string) {
-    const newUser: User = {
-        id: users.length + 1,
-        firstName: fName,
-        lastName: lName,
-        email: newEmail,
-        password: newPassword,
-        role: newRole,
-        imageURL: newImageURL
-    }
-    addUser(newUser)
-}
+// function addNewUser(newFullName: string, newEmail: string, newPassword: string, newRole: string, newImageURL: string) {
+//     const newUser: User = {
+//         id: users.value.length + 1,
+//         fullName: newFullName, 
+//         email: newEmail,
+//         password: newPassword,
+//         role: newRole,
+//         imageURL: newImageURL
+//     }
+//     createUser(newUser)
+// }
 
-function editExistingUser(user: User, newIDEdit: number, fName: string, lName: string, newEmail: string, newPassword: string, newRole: string, newImageURL: string) {
-    editUser(user, newIDEdit, fName, lName, newEmail, newPassword, newRole, newImageURL)
-}
+// function editExistingUser(user: User, newIDEdit: number, fName: string, lName: string, newEmail: string, newPassword: string, newRole: string, newImageURL: string) {
+//     editUser(user, newIDEdit, fName, lName, newEmail, newPassword, newRole, newImageURL)
+// }
 </script>
 
 <template>
-    <div class="columns" v-if="role === 'admin'">
+    <!-- <div class="columns" v-if="role === 'admin'">
         <div class="column is-three-quarters is-centered">
             <div class="panel">
                 <div class="panel-heading">Add a New User</div>
@@ -213,7 +213,7 @@ function editExistingUser(user: User, newIDEdit: number, fName: string, lName: s
                <h1>You are not authorized to view this page.</h1>
             </box>
         </div>
-    </div>
+    </div> -->
 </template>
 
 <style scoped>

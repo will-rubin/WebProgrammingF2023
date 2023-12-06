@@ -5,7 +5,7 @@ import { ref } from 'vue';
 
 const posts = ref([] as Post[])
 
-getAllPosts().then((data) => {
+await getAllPosts().then((data) => {
   posts.value = data;
 })
 

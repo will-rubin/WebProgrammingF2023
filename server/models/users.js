@@ -107,7 +107,7 @@ async function remove(id) {
 /**
  * @param {string} email - The user's email.
  * @param {string} password - The user's password.
- * @returns {Promise<User>} - The user.
+ * @returns {Promise<{ user: User, token: string}>} - The user.
  */
 async function login(email, password) {
     const col = await getCollection();
@@ -115,8 +115,8 @@ async function login(email, password) {
     if(user.password !== password) {
         throw new Error('Wrong password');
     }
-    const token = await 
-    return user;
+    const token = await generateJWT(user);
+    return {user, token};
 }
 
 //Seeds the database with the data from users.json

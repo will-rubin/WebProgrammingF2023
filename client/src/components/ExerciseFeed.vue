@@ -1,39 +1,42 @@
 <!--want this to be a filterable feed of media objects -->
 
 <script setup lang="ts">
-import { getSession } from '@/model/session';
+import { getSession, getCurrentUser } from '@/model/session';
 import { type Post, getAllPosts, getPost, deletePost, createPost, updatePost } from '@/model/posts';
 import { ref } from 'vue';
 
-const user = getSession().user;
+// const user = ref(getCurrentUser());
 
-const email = user?.email;
+// const email = user.value?.email;
 
-const posts = ref(getPostsByEmail(email));
+// const posts = ref([] as Post[]);
+// await getAllPosts().then((data) => {
+//     posts.value = data;
+// })
 
-const id = ref(9);
-const currentAuthor = email;
-const fullName = user?.fullName;
-const timestamp = ref("00:00:00");
-const location = ref("Location");
-const caption = ref("Caption");
-const imageURL = ref("ImageURL");
-const distance = ref(0.0);
-const duration = ref(0.0);
+// const id = ref(9);
+// const currentAuthor = email;
+// const fullName = user.value?.fullName;
+// const timestamp = ref("00:00:00");
+// const location = ref("Location");
+// const caption = ref("Caption");
+// const imageURL = ref("ImageURL");
+// const distance = ref(0.0);
+// const duration = ref(0.0);
 
 
-//this is very bad, we insead need to get the max id from the database itself, 
-//This violates MVC principles
-function incrementId() {
-    id.value++;
-}
+// //this is very bad, we insead need to get the max id from the database itself, 
+// //This violates MVC principles
+// function incrementId() {
+//     id.value++;
+// }
 
-const selectedPostID = ref(0);
-const selectedPost = ref(getPosts()[selectedPostID.value]);
+// const selectedPostID = ref(0);
+// const selectedPost = ref(getPosts()[selectedPostID.value]);
 </script>
 
 <template>
-    <div class="columns">
+    <!-- <div class="columns">
         <div class="column is-one-quarter"> <!-- exercise adder-->
             <div class="box">
                 <label class="label has-text-centered">Exercise Adder</label>
@@ -174,7 +177,7 @@ const selectedPost = ref(getPosts()[selectedPostID.value]);
                 </div>
             </div>
         </div>
-    </div>
+    </div> -->
 </template>
 
 

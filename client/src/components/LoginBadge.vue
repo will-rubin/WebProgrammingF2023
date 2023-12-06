@@ -4,7 +4,7 @@
     import { ref } from 'vue';
 
     const myUsers = ref([] as User[])
-    getUsers().then((data) => {
+    await getUsers().then((data) => {
         myUsers.value = data;
     })
 

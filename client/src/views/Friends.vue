@@ -6,7 +6,7 @@ import { type Post, getAllPosts } from '@/model/posts';
 const user = getSession().user;
 
 const posts = ref<Post[]>([]);
-getAllPosts().then((data) => {
+await getAllPosts().then((data) => {
   posts.value = data;
 });
 </script>
