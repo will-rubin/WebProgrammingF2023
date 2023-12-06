@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue';
 import { getSession } from '@/model/session';
-import { getPosts } from '@/model/exercisePosts';
+import { type Post, getAllPosts } from '@/model/posts';
 
-const posts = getPosts();
+const posts = ref([] as Post[])
+getAllPosts().then((data) => {
+    posts.value = data;
+}) 
 
 const distanceTotal = computed(() => {
     let total = 0;
-    for (let i = 0; i < posts.length; i++) {
-        if(posts[i].author == getSession().user?.email) {
-            total += posts[i].distance;
+    for (let i = 0; i < posts.value.length; i++) {
+        if(posts.value[i].author == getSession().user?.email) {
+            total += posts.value[i].distance;
         }
     }
     return total;
@@ -17,9 +20,9 @@ const distanceTotal = computed(() => {
 
 const durationTotal = computed(() => {
     let total = 0;
-    for (let i = 0; i < posts.length; i++) {
-        if(posts[i].author == getSession().user?.email) {
-            total += posts[i].duration;
+    for (let i = 0; i < posts.value.length; i++) {
+        if(posts.value[i].author == getSession().user?.email) {
+            total += posts.value[i].duration;
         }
     }
     return total/60;

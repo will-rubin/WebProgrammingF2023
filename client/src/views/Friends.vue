@@ -1,10 +1,14 @@
 <script setup lang="ts">
 import { ref } from 'vue';
 import { getSession } from '@/model/session';
-import { getPosts } from '@/model/exercisePosts';
+import { type Post, getAllPosts } from '@/model/posts';
 
 const user = getSession().user;
-const posts = ref(getPosts());
+
+const posts = ref<Post[]>([]);
+getAllPosts().then((data) => {
+  posts.value = data;
+});
 </script>
 
 <template>
@@ -19,7 +23,7 @@ const posts = ref(getPosts());
                 <div class="media-content">
                 <div class="content">
                     <p>
-                    <strong>{{ post.fname }} {{ post.lname }}</strong> <small>{{ post.author }}</small>
+                    <strong>{{ post.fullName }}</strong> <small>{{ post.author }}</small>
                     <br>
                     {{ post.caption }}
                     <br>
@@ -58,4 +62,4 @@ const posts = ref(getPosts());
 
 <style scoped>
 
-</style>@/model/posts
+</style>

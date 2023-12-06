@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import { getSession } from '@/model/session';
-import { type ExercisePost, getPosts, getPostsByEmail, addPost, editPost, deletePost } from '@/model/posts';
+import { type Post, getAllPosts, getPost, deletePost, createPost, updatePost } from '@/model/posts';
 import { ref } from 'vue';
 
 const user = getSession().user;
@@ -182,5 +182,3 @@ const selectedPost = ref(getPosts()[selectedPostID.value]);
 <style scoped>
 
 </style>
-
-@/model/posts

@@ -3,7 +3,10 @@
     import { type User, getUsers } from '@/model/users'
     import { ref } from 'vue';
 
-    const myUsers = ref(getUsers())
+    const myUsers = ref([] as User[])
+    getUsers().then((data) => {
+        myUsers.value = data;
+    })
 
     const session = ref(getSession())
 

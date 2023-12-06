@@ -1,9 +1,14 @@
 <script setup lang="ts">
-import ExerciseFeed from '@/components/ExerciseFeed.vue';
 import { getSession } from '@/model/session';
-import { type ExercisePost, getPosts} from '@/model/exercisePosts';
-import { reactive } from 'vue';
-const posts = reactive(getPosts());
+import { type Post, getAllPosts} from '@/model/posts';
+import { ref } from 'vue';
+
+const posts = ref([] as Post[])
+
+getAllPosts().then((data) => {
+  posts.value = data;
+})
+
 const session = getSession();
 
 </script>
@@ -20,7 +25,7 @@ const session = getSession();
             <div class="media-content">
               <div class="content">
                 <p>
-                  <strong>{{ post.fname }} {{ post.lname }}</strong> <small>{{ post.author }}</small>
+                  <strong>{{ post.fullName }}</strong> <small>{{ post.author }}</small>
                   <br>
                   {{ post.caption }}
                   <br>
@@ -71,5 +76,3 @@ const session = getSession();
     margin-right: 15px;
   }
 </style>
-```
-@/model/posts
