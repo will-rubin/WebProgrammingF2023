@@ -2,7 +2,7 @@ const express = require('express');
 const { getAllPosts, get, search, create, update, remove, seed } = require('../models/posts.js');
 const router = express.Router();
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
     getAllPosts()
     .then(posts => {
         res.send(posts);
@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
     .catch(next)
 })
 
-.get('/search', (req, res) => {
+.get('/search', (req, res, next) => {
     search(req.query.q)
     .then(posts => {
         res.send(posts);
@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
     .catch(next)
 })
 
-.get('/:id', (req, res) => {
+.get('/:id', (req, res, next) => {
     get(+req.params.id)
     .then(post => {
         if(post) {

@@ -15,7 +15,7 @@ const { ObjectId, connect } = require('./mongo')
  * @property {number} duration
  */
 
-const data = require('../data/posts.json');
+
 
 const COLLECTION_NAME = 'posts';
 async function getCollection() {
@@ -29,7 +29,7 @@ async function getCollection() {
  */
 async function getAllPosts() {
   const col = await getCollection();
-  return await col.toArray();
+  return await col.find({}).toArray();
 }
 
 //gets a single post by its id
