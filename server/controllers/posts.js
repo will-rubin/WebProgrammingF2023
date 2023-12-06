@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllPosts, get, search, create, update, remove } = require('../models/posts.js');
+const { getAllPosts, get, search, create, update, remove, seed } = require('../models/posts.js');
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -11,33 +11,57 @@ router.get('/', (req, res) => {
 })
 
 .get('/search', (req, res) => {
-    const results = search(req.query.q);
-    res.send(results);
+    search(req.query.q)
+    .then(posts => {
+        res.send(posts);
+    })
+    .catch(next)
 })
 
-.get('/posts/:id', (req, res) => {
-    const post = get(+req.params.id);
-    if (post) {
-        res.send(post);
-    } else {
-        res.status(404).send('Post not found');
-    }
+.get('/:id', (req, res) => {
+    get(+req.params.id)
+    .then(post => {
+        if(post) {
+            res.send(post);
+        }
+        else {
+            res.status(404).send({message: 'Post not found'});
+        }
+    })
+    .catch(next)
 })
 
 .post('/', (req, res, next) => {
-    const post = create(req.body);
-    res.send(post);
+    create(req.body)
+    .then((post) => {
+        res.send(post);
+    })
+    .catch(next)
 })
 
 .patch('/:id', (req, res, next) => {
     req.body.id = +req.params.id;
-    const post = update(req.body);
-    res.send(post);
+    update(req.body)
+    .then((post) => {
+        res.send(post);
+    })
+    .catch(next)
 })
 
 .delete('/:id', (req, res, next) => {
-    remove(+req.params.id);
-    res.send({message: 'Post deleted successfully'});
+    remove(+req.params.id)
+    .then(() => {
+        res.send({message: 'Post deleted'});
+    })
+    .catch(next)
+})
+
+.post('/seed', (req, res, next) => {
+    seed()
+    .then(() => {
+        res.send({message: 'Database seeded with products'});
+    })
+    .catch(next)
 });
 
 module.exports = router;

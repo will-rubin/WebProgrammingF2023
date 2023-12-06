@@ -116,5 +116,5 @@ async function seed() {
 }
 
 module.exports = {
-    getAllPosts, get, search, create, update, remove
+    getAllPosts, get, search, create, update, remove, seed
 };
