@@ -58,4 +58,4 @@ const posts = ref(getPosts());
 
 <style scoped>
 
-</style>
+</style>@/model/posts

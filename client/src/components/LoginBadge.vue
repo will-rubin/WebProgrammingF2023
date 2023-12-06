@@ -1,11 +1,11 @@
 <script setup lang="ts">
     import { getSession, useLogin } from '@/model/session'
-    import { type User, getUsers, users } from '@/model/users'
-    import { reactive } from 'vue';
+    import { type User, getUsers } from '@/model/users'
+    import { ref } from 'vue';
 
-    const myUsers = reactive(users)
+    const myUsers = ref(getUsers())
 
-    const session = getSession()
+    const session = ref(getSession())
 
     const { login, logout } = useLogin()
 
@@ -20,7 +20,7 @@
 
 <template>
     <div class="has-text-centered" v-if="session.user">
-        <strong>Welcome, {{ session.user.firstName }} {{ session.user.lastName }}!</strong> <br />
+        <strong>Welcome, {{ session.user.fullName }}!</strong> <br />
         <small>
             {{ session.user.email }}
             <a class="button is-small is-light is-warning" @click.prevent="doLogout">
@@ -38,7 +38,7 @@
                     <span class="icon">
                         <i class="fas fa-sign-in-alt"></i>
                     </span>
-                    <span>{{ user.firstName }} {{ user.lastName }}: {{ user.role }}</span>
+                    <span>{{ user.fullName }}: {{ user.role }}</span>
                 </button>
             </label>
         </div>

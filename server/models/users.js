@@ -1,5 +1,4 @@
-// @ts-check
-//in sha' Allah
+
 const { ObjectId, connect } = require('./mongo')
 /**
  * @typedef {Object} User
@@ -17,6 +16,11 @@ async function getCollection() {
   const db = await connect();
   return db.collection(COLLECTION_NAME);
 }
+
+const jwt = require('jsonwebtoken');
+
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN;
 
 //gets all the users
 /**
@@ -45,10 +49,10 @@ async function get(id) {
 async function search(query) {
     const col = await getCollection();
     const users = await col.find({
-      $or: [
-        { fullName: { query } },
-        { email: { query } },
-      ],
+        $or: [
+            { fullName: { $regex: `${query}`, $options: 'i' } },
+            { email: { $regex: `${query}`, $options: 'i' } },
+        ],
     }).toArray();
 
     return users;
@@ -111,6 +115,7 @@ async function login(email, password) {
     if(user.password !== password) {
         throw new Error('Wrong password');
     }
+    const token = await 
     return user;
 }
 
@@ -118,6 +123,30 @@ async function login(email, password) {
 async function seed() {
     const col = await getCollection();
     await col.insertMany(data.users);
+}
+
+function generateJWT(user) {
+    return new Promise((resolve, reject) => {
+      jwt.sign(user, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN } , (err, token) => {
+        if(err) {
+          reject(err);
+        } else {
+          resolve(token);
+        }
+      });
+    })
+}
+
+function verifyJWT(token) {
+    return new Promise((resolve, reject) => {
+      jwt.verify(token, JWT_SECRET, (err, decoded) => {
+        if(err) {
+          reject(err);
+        } else {
+          resolve(decoded);
+        }
+      });
+    })
 }
 
 module.exports = {
@@ -128,5 +157,7 @@ module.exports = {
     update,
     remove,
     login, 
-    seed
+    seed,
+    generateJWT,
+    verifyJWT
 };

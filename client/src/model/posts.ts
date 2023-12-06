@@ -14,7 +14,7 @@ export interface Post {
   fullName: string
 }
 
-export async function getPosts(): Promise<Post[]> {
+export async function getAllPosts(): Promise<Post[]> {
   return await api("posts");
 }
 
@@ -28,4 +28,8 @@ export async function createPost(post: Post): Promise<Post> {
 
 export async function updatePost(post: Post): Promise<Post> {
   return await api(`posts/${post.id}`, post, "PATCH");
+}
+
+export async function deletePost(id: number): Promise<Post> {
+  return await api(`posts/${id}`, undefined, "DELETE");
 }

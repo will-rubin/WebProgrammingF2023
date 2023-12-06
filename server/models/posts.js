@@ -49,16 +49,8 @@ async function get(id) {
  */
 async function search(query) {
 
-    const col = await getCollection();
-
-    const posts = await col.find({
-      $or: [
-        { caption: { $regex: query, $options: 'i' } },
-        { location: { $regex: query, $options: 'i' } },
-      ],
-    }).toArray();
-    
-    return posts;
+  const col = await getCollection();
+  return await col.find({ $text: { $search: query } }).toArray();
 }
 
 //creates a new post

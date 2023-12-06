@@ -2,7 +2,7 @@
 
 <script setup lang="ts">
 import { getSession } from '@/model/session';
-import { type ExercisePost, getPosts, getPostsByEmail, addPost, editPost, deletePost } from '@/model/exercisePosts';
+import { type ExercisePost, getPosts, getPostsByEmail, addPost, editPost, deletePost } from '@/model/posts';
 import { ref } from 'vue';
 
 const user = getSession().user;
@@ -13,8 +13,7 @@ const posts = ref(getPostsByEmail(email));
 
 const id = ref(9);
 const currentAuthor = email;
-const fname = ref(user?.firstName);
-const lname = ref(user?.lastName);
+const fullName = user?.fullName;
 const timestamp = ref("00:00:00");
 const location = ref("Location");
 const caption = ref("Caption");
@@ -184,3 +183,4 @@ const selectedPost = ref(getPosts()[selectedPostID.value]);
 
 </style>
 
+@/model/posts

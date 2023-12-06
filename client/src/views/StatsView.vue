@@ -3,7 +3,7 @@ import { computed, ref } from 'vue';
 import { getSession } from '@/model/session';
 import { getPosts } from '@/model/exercisePosts';
 
-let posts = getPosts();
+const posts = getPosts();
 
 const distanceTotal = computed(() => {
     let total = 0;
@@ -69,4 +69,4 @@ const caloriesBurnt = computed(() => {
 
 <style scoped>
 
-</style>
+</style>@/model/posts

@@ -18,6 +18,22 @@ export async function getUser(id: number): Promise<User | undefined> {
   return users.find(u => u.id === id);
 }
 
+export async function createUser(user: User): Promise<User> {
+  return await api("users", user, "POST");
+}
+
+export async function updateUser(user: User): Promise<User> {
+  return await api(`users/${user.id}`, user, "PATCH");
+}
+
+export async function deleteUser(id: number): Promise<User> {
+  return await api(`users/${id}`, undefined, "DELETE");
+}
+
+export async function login(email: string, password: string): Promise<User> {
+  return await api("users/login", { email, password }, "POST");
+}
+
 
 
 

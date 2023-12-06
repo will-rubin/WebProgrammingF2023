@@ -72,3 +72,4 @@ const session = getSession();
   }
 </style>
 ```
+@/model/posts
