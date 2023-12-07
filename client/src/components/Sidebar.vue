@@ -2,16 +2,7 @@
 import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import LoginBadge from './LoginBadge.vue';
-import { getCurrentUser } from '@/model/session';
 
-
-const show = ref(false)
-
-function confirm() {
-    show.value = false
-}
-
-const user = getCurrentUser();
 const isActive = ref(false)
 </script>
 

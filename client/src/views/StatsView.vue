@@ -72,4 +72,4 @@ const caloriesBurnt = computed(() => {
 
 <style scoped>
 
-</style>@/model/posts
+</style>
