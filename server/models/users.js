@@ -125,8 +125,8 @@ async function seed() {
     await col.insertMany(data.users);
 }
 
-function generateJWT(user) {
-    return new Promise((resolve, reject) => {
+async function generateJWT(user) {
+    return await new Promise((resolve, reject) => {
       jwt.sign(user, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN } , (err, token) => {
         if(err) {
           reject(err);
@@ -137,8 +137,8 @@ function generateJWT(user) {
     })
 }
 
-function verifyJWT(token) {
-    return new Promise((resolve, reject) => {
+async function verifyJWT(token) {
+    return await new Promise((resolve, reject) => {
       jwt.verify(token, JWT_SECRET, (err, decoded) => {
         if(err) {
           reject(err);

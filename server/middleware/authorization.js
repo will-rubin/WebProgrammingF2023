@@ -1,7 +1,7 @@
 const usersModel = require('../models/users');
 
-module.exports = {
-  async parseAuthorizationToken(req, res, next) {
+
+async function parseAuthorizationToken(req, res, next) {
     const authHeader = req.headers.authorization;
     const token = authHeader?.split(' ')[1];
     if (!token) {
@@ -10,8 +10,8 @@ module.exports = {
     const payload = await usersModel.verifyJWT(token);
     req.user = payload;
     next();
-  },
-  requireUser(adminOnly = false){
+  }
+async function requireUser(adminOnly = false){
     return function(req, res, next) {
       if (!req.user) {
         return next({
@@ -27,5 +27,9 @@ module.exports = {
       }
       next();
     }
-  },
+}
+
+module.exports = {
+    parseAuthorizationToken,
+    requireUser
 }

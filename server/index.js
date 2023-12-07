@@ -4,7 +4,7 @@ const express = require('express');
 require('dotenv').config();
 const postController = require('./controllers/posts.js');
 const userController = require('./controllers/users.js');
-const { parseAuthoritzationToken, requireUser } = require('./middleware/authorization.js');
+const { parseAuthorizationToken, requireUser } = require('./middleware/authorization.js');
 const app = express();
 
 const PORT = process.env.PORT ?? 3000;
@@ -26,7 +26,7 @@ app
         next();
     })
 
-    .use(parseAuthoritzationToken)
+    .use(parseAuthorizationToken)
 
     .use('/api/v1/posts', postController)
 
