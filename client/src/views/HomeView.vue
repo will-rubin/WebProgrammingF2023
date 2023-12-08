@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { getSession } from '@/model/session';
 import { type Post, getAllPosts} from '@/model/posts';
 import { ref } from 'vue';
 
@@ -9,7 +8,6 @@ await getAllPosts().then((data) => {
   posts.value = data;
 })
 
-const session = getSession();
 
 </script>
 

@@ -13,11 +13,15 @@ const session = getSession()
   <div class="columns">
     
     <div class="column is-one-fifth">
-      <Sidebar />
+      <Suspense>
+        <Sidebar />
+      </Suspense>
     </div>
     <div class="column">
       <progress class="progress is-small is-primary is-striped" max="100" v-if="session.loading">15%</progress>
-      <RouterView />
+      <Suspense>
+        <RouterView />
+      </Suspense>
     </div>
   </div>
 </template>

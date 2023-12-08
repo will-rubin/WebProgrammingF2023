@@ -10,7 +10,7 @@
 
     const session = ref(getSession())
 
-    const { login, logout } = useLogin()
+    const { login, logout } = await useLogin()
 
     function doLogin(user: User) {
         login(user.email, user.password);
@@ -34,8 +34,10 @@
         </small>
     </div>
     <div>
-        <div class="panel-heading" v-if="!session.user">Login</div>
-        <div>
+        <div class="panel-heading" v-if="!session.user">Login
+            <span class="icon">
+                <i class="fas fa-sign-in-alt"></i>
+            </span>
             <label class="panel-block" v-for="user in myUsers">
                 <button class="button is-fullwidth is-primary" @click.prevent="doLogin(user)">
                     <span class="icon">

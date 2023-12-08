@@ -34,6 +34,16 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+.post('/login', (req, res, next) => {
+    const email = req.body.email;
+    const password = req.body.password;
+    login(email, password)
+    .then((user) => {
+        res.send(user);
+    })
+    .catch(next)
+})
+
 .post('/', (req, res, next) => {
     create(req.body)
     .then((user) => {
@@ -67,15 +77,7 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-.post('/login', (req, res, next) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    login(email, password)
-    .then((user) => {
-        res.send(user);
-    })
-    .catch(next)
-})
+
 
 module.exports = router;
 

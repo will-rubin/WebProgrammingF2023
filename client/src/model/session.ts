@@ -37,26 +37,26 @@ export function getCurrentUser() {
     return session.user;
 }
 
-export function useLogin(){
+export async function useLogin(){
     const router = useRouter();
     return {
         async login(email: string, password: string): Promise<User | null> {
-            const response = await api("users/login", { email, password });
-            if(response.success) {
-                session.user = response.user;
-                session.token = response.token;
+            try {
+                const response = await api("users/login", { email, password }, "POST");
+                session.user = response?.user;
+                session.token = response?.token;
+
                 router.push(session.redirectURL ?? "/");
                 return session.user;
-            }
-            else {
-                showError(response.error);
+            } catch (err) {
+                showError(err);
                 return null;
             }
         },
         logout() {
             session.user = null;
             session.token = null;
-            router.push("/home");
+            router.push("/");
         }
     }
 }

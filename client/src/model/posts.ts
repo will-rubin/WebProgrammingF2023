@@ -1,6 +1,4 @@
-import e from "express";
 import { api } from "./session";
-
 
 export interface Post {
   id: number
