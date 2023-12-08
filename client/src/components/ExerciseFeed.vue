@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import { type Post, getAllPosts, filterPostsByUser, createPost, updatePost, deletePost } from '@/model/posts';
-import { getCurrentUserEmail } from '@/model/session';
+import { getCurrentUserEmail, getCurrentUserFullName } from '@/model/session';
 import { ref } from 'vue';
 
 const posts = ref([] as Post[])
 const selectedPost = ref(null as Post | null)
-const isModalOpen = ref(false)
+const isEditModalOpen = ref(false)
+const isAddModalOpen = ref(false)
 
 await getAllPosts().then((data) => {
     posts.value = data;
@@ -22,12 +23,20 @@ const deletePostById = async (postId: number) => {
 
 const openEditModal = (post: Post) => {
     selectedPost.value = post
-    isModalOpen.value = true
+    isEditModalOpen.value = true
+}
+
+const openAddModal = () => {
+    isAddModalOpen.value = true
 }
 
 const closeEditModal = () => {
     selectedPost.value = null
-    isModalOpen.value = false
+    isEditModalOpen.value = false
+}
+
+const closeAddModal = () => {
+    isAddModalOpen.value = false
 }
 
 const ePostCaption = ref()
@@ -35,6 +44,33 @@ const ePostImageURL = ref('')
 const ePostLocation = ref('')
 const ePostDistance = ref(0)
 const ePostDuration = ref(0)
+
+const newPostTimeStamp = ref('')
+const newPostCaption = ref()
+const newPostImageURL = ref('')
+const newPostLocation = ref('')
+const newPostDistance = ref(0)
+const newPostDuration = ref(0)
+
+
+const addPost = async (newPostCaption: string, newPostImageURL: string, newPostLocation: string, newPostDistance: number, newPostDuration: number, newPostTimeStamp: string) => {
+    const newPost = {
+        id: 0,
+        author: getCurrentUserEmail(),
+        caption: newPostCaption,
+        imageURL: newPostImageURL,
+        location: newPostLocation,
+        distance: newPostDistance,
+        duration: newPostDuration,
+        timestamp: newPostTimeStamp,
+        fullName: getCurrentUserFullName()
+    } as Post
+    await createPost(newPost)
+    await getAllPosts().then((data) => {
+        posts.value = data;
+    })
+    closeAddModal()
+}
 
 
 
@@ -59,6 +95,54 @@ const saveEditedPost = async (ePostCaption: string, ePostImageURL: string, ePost
 <template>
     <div class="box">
         <h1 class="title has-text-centered">An area to add, edit, delete, and view your posts</h1>
+    </div>
+    <div class="box">
+        <button class="button is-success" @click="openAddModal()">Add Post</button>
+    </div>
+    <div v-if="isAddModalOpen" class="modal is-active">
+        <div class="modal-background"></div>
+        <div class="modal-content">
+            <div class="box">
+                <h1 class="title">Add Post</h1>
+                <div class="field">
+                    <label class="label">Caption</label>
+                    <div class="control">
+                        <input class="input" type="text" v-model="newPostCaption" placeholder="Caption">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Image URL</label>
+                    <div class="control">
+                        <input class="input" type="text" v-model="newPostImageURL" placeholder="Image URL">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Location</label>
+                    <div class="control">
+                        <input class="input" type="text" v-model="newPostLocation" placeholder="Location">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Distance</label>
+                    <div class="control">
+                        <input class="input" type="number" v-model="newPostDistance" placeholder="Distance">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Duration</label>
+                    <div class="control">
+                        <input class="input" type="number" v-model="newPostDuration" placeholder="Duration">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Timestamp</label>
+                    <div class="control">
+                        <input class="input" type="number" v-model="newPostTimeStamp" placeholder="Duration">
+                    </div>
+                </div>
+                <button class="button is-success" @click="addPost(newPostCaption, newPostImageURL, newPostLocation, newPostDistance, newPostDuration, newPostTimeStamp)">Add Post</button>
+            </div>
+        </div>
     </div>
     <div class="column">
         <div class="panel">
@@ -105,7 +189,7 @@ const saveEditedPost = async (ePostCaption: string, ePostImageURL: string, ePost
         </div>
     </div>
     <!-- Modal -->
-    <div v-if="isModalOpen" class="modal is-active">
+    <div v-if="isEditModalOpen" class="modal is-active">
         <div class="modal-background"></div>
         <div class="modal-content">
             <div class="box">

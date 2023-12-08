@@ -38,6 +38,11 @@ export function getCurrentUserEmail() {
     return user.email;
 }
 
+export function getCurrentUserFullName() {
+    let user = session.user as User;
+    return user.fullName;
+}
+
 export async function useLogin(){
     const router = useRouter();
     return {
