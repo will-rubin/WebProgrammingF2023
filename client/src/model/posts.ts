@@ -31,3 +31,7 @@ export async function updatePost(post: Post): Promise<Post> {
 export async function deletePost(id: number): Promise<Post> {
   return await api(`posts/${id}`, undefined, "DELETE");
 }
+
+export function filterPostsByUser(posts: Post[], email: string): Post[] {
+  return posts.filter(post => post.author === email);
+}

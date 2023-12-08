@@ -3,25 +3,19 @@ console.log(API_ROOT); // this will log the value of VITE_API_ROOT from .env fil
 
 //representational state transfer method: carries out whatever the request is, and returns a promise of whatever the response is
 export async function rest(url: string, body?: unknown, method?: string, headers?: any) {
-    const requestOptions: RequestInit = {
-        method: method,
+    return fetch(url, {
+        method: method ?? (body ? "POST" : "GET"),
         headers: {
-            "Content-Type": "application/json",
+            'Content-Type': 'application/json',
             ...headers
         },
-    };
+        body: body ? JSON.stringify(body) : undefined
+    })
+        .then(response => response.ok 
+            ? response.json()
+            : response.json().then(err => Promise.reject(err))
+        )
 
-    if (body) {
-        requestOptions.body = JSON.stringify(body);
-    }
-
-    const response = await fetch(url, requestOptions);
-
-    if (response.ok) {
-        return response.json();
-    } else {
-        throw new Error(response.statusText);
-    }
 }
 
 export function api(action: string, body?: unknown, method?: string, headers?: any) {

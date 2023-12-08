@@ -28,6 +28,15 @@ Content-Type: application/json
     "fullName": "Tommy"
 }
 
+//patch a post
+###
+PATCH http://localhost:3000/api/v1/posts/1
+Content-Type: application/json
+
+{
+    "caption": "Scratch Test Successful again my friends"
+}
+
 //create user
 ###
 POST http://localhost:3000/api/v1/users/

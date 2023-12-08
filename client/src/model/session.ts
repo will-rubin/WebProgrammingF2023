@@ -33,8 +33,9 @@ export function getSession() {
     return session;
 }
 
-export function getCurrentUser() {
-    return session.user;
+export function getCurrentUserEmail() {
+    let user = session.user as User;
+    return user.email;
 }
 
 export async function useLogin(){
