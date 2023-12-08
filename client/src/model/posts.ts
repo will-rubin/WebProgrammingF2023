@@ -13,22 +13,22 @@ export interface Post {
 }
 
 export async function getAllPosts(): Promise<Post[]> {
-  return await api("posts");
+  return await api("posts") as Post[];
 }
 
 export async function getPost(id: number): Promise<Post> {
-  return await api(`posts/${id}`);
+  return await api(`posts/${id}`) as Post;
 }
 
 export async function createPost(post: Post): Promise<Post> {
-  return await api("posts", post, "POST");
+  return await api("posts", post, "POST") as Post;
 }
 
 export async function updatePost(post: Post): Promise<Post> {
-  return await api(`posts/${post.id}`, post, "PATCH");
+  return await api(`posts/${post.id}`, post, "PATCH") as Post;
 }
 
-export async function deletePost(id: number): Promise<Post> {
+export async function deletePost(id: number){
   return await api(`posts/${id}`, undefined, "DELETE");
 }
 

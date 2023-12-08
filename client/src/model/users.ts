@@ -10,7 +10,7 @@ export interface User {
 }
 
 export async function getUsers(): Promise<User[]> {
-  return await api("users");
+  return await api("users") as User[];
 }
 
 export async function getUser(id: number): Promise<User | undefined> {
@@ -19,19 +19,19 @@ export async function getUser(id: number): Promise<User | undefined> {
 }
 
 export async function createUser(user: User): Promise<User> {
-  return await api("users", user, "POST");
+  return await api("users", user, "POST") as User;
 }
 
 export async function updateUser(user: User): Promise<User> {
-  return await api(`users/${user.id}`, user, "PATCH");
+  return await api(`users/${user.id}`, user, "PATCH") as User;
 }
 
-export async function deleteUser(id: number): Promise<User> {
+export async function deleteUser(id: number) {
   return await api(`users/${id}`, undefined, "DELETE");
 }
 
 export async function login(email: string, password: string): Promise<User> {
-  return await api("users/login", { email, password }, "POST");
+  return await api("users/login", { email, password }, "POST") as User;
 }
 
 

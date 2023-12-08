@@ -43,9 +43,14 @@ export async function useLogin(){
     return {
         async login(email: string, password: string): Promise<User | null> {
             try {
-                const response = await api("users/login", { email, password }, "POST");
-                session.user = response?.user;
-                session.token = response?.token;
+                await api("users/login", { email, password }, "POST")
+                .then((data: any) => {
+                    session.user = data.user;
+                    session.token = data.token;
+                }).catch((err: any) => {
+                    showError(err);
+                });
+                
 
                 router.push(session.redirectURL ?? "/");
                 return session.user;

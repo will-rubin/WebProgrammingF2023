@@ -30,22 +30,23 @@ const closeEditModal = () => {
     isModalOpen.value = false
 }
 
-const ePostCaption = ref(selectedPost.value?.caption || "") 
-const ePostImageURL = ref(selectedPost.value?.imageURL || "")
-const ePostLocation = ref(selectedPost.value?.location || "")
-const ePostDistance = ref(selectedPost.value?.distance || 0)
-const ePostDuration = ref(selectedPost.value?.duration || 0)
+const ePostCaption = ref()
+const ePostImageURL = ref('')
+const ePostLocation = ref('')
+const ePostDistance = ref(0)
+const ePostDuration = ref(0)
 
 
-const saveEditedPost = async (ePostCaption, ePostImageURL, ePostLocation, ePostDistance, ePostDuration) => {
+
+const saveEditedPost = async (ePostCaption: string, ePostImageURL: string, ePostLocation: string, ePostDistance: number, ePostDuration: number) => {
     const editedPost = {
         ...selectedPost.value,
-        caption: ePostCaption.value,
-        imageURL: ePostImageURL.value,
-        location: ePostLocation.value,
-        distance: ePostDistance.value,
-        duration: ePostDuration.value
-    }
+        caption: ePostCaption,
+        imageURL: ePostImageURL,
+        location: ePostLocation,
+        distance: ePostDistance,
+        duration: ePostDuration
+    } as Post
 
     await updatePost(editedPost)
     await getAllPosts().then((data) => {
