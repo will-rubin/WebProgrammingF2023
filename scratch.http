@@ -61,7 +61,8 @@ Content-Type: application/json
 
 //generate a new ImageURL
 ###
-PATCH http://localhost:3000/api/v1/posts/generate/0
+PATCH http://localhost:3000/api/v1/posts/generate/3
+
 
 
 
