@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { type Post, getAllPosts} from '@/model/posts';
+import { type Post, getAllPosts } from '@/model/posts';
+import { getUserFromEmail } from '@/model/users';
 import { ref } from 'vue';
 
 const posts = ref([] as Post[])
@@ -15,62 +16,94 @@ await getAllPosts().then((data) => {
   <div class="box">
     <h1 class="title">Welcome to the Exercise Tracker!</h1>
   </div>
-  <div class="column"> <!-- exercise feed-->
-    <div class="panel">
-      <p class="panel-heading has-text-centered">All Posts</p>
+  <div class="columns">
+    <div class="column"></div>
+    <div class="column is-four-fifths"> <!-- exercise feed-->
+      <div class="panel">
+        <p class="panel-heading has-text-centered">All Posts</p>
         <div class="panel-block" v-for="post in posts" :key="post.id">
           <article class="media-content">
             <div class="media-content">
               <div class="content">
-                <p>
-                  <strong>{{ post.fullName }}</strong> <small>{{ post.author }}</small>
-                  <br>
-                  {{ post.caption }}
-                  <br>
-                </p>
-              <div>
-                <div class="level">
-                  <div class="level-item">
-                    <div class="media-content">
-                      <p class="image">
-                        <img :src="post.imageURL" style="max-width: 300px; width: 100%">
-                      </p>
+                <div class="card">
+
+                  <div class="card-image">
+                    <figure class="image">
+                      <img :src="post.imageURL" alt="Post image">
+                    </figure>
+                  </div>
+
+                  <div class="card-content">
+                    <div class="media">
+                      <div class="media-left">
+
+                      </div>
+                      <div class="media-content">
+                        <p class="title is-4">{{ post.fullName }}</p>
+                        <p class="subtitle is-6">{{ post.author }}</p>
+                      </div>
                     </div>
-                  </div>
-                  <div class="level-item">
-                    <h2 class="title">Distance: {{ post.distance }} miles</h2>
-                  </div>
-                  <div class="level-item">
-                    <h2 class="title">Duration: {{ post.duration }} minutes</h2>
+                    
+                    <nav class="level">
+                      <div class="level-left">
+                        <div class="level-item">
+                          <div class="content">{{ post.caption }}</div>
+                        </div>
+                      </div>
+                      <div class="level-right">
+                        <div class="level-item has-text-centered">
+                          <p class="heading">Distance</p>
+                          <p class="title">{{ post.distance }} <small>miles</small></p>
+                        </div>
+                        <div class="level-item has-text-centered">
+                          <p class="heading">Duration</p>
+                          <p class="title">{{ post.duration }} <small>minutes</small></p>
+                        </div>
+                      </div>
+                    </nav>
+
+                    <footer class="card-footer">
+                      <div class="field is-grouped is-grouped-multiline">
+                        <div class="control">
+                          <div class="tags has-addons">
+                            <span class="tag">time</span>
+                            <span class="tag is-info is-light">{{ post.timestamp }}</span>
+                          </div>
+                        </div>
+
+                        <div class="control">
+                          <div class="tags has-addons">
+                            <span class="tag">location</span>
+                            <span class="tag is-info is-light">{{ post.location }}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </footer>
                   </div>
                 </div>
-                <p>
-                  <small>{{ post.location }} </small>
-                  <br>
-                  <small>{{ post.timestamp }}</small>
-                </p>
               </div>
             </div>
-          </div>
-        </article>
+          </article>
+        </div>
       </div>
     </div>
+    <div class="column"></div>
   </div>
 </template>
 
 <style scoped>
-  h1 {
-    text-align: center;
-    background-color: #b7e6ea;
-    padding: 20px;
-    margin-top: 20px;
-  }
-  
-  icon-text {
-    margin-left: 10px;
-  }
+h1 {
+  text-align: center;
+  background-color: #b7e6ea;
+  padding: 20px;
+  margin-top: 20px;
+}
 
-  .column {
-    margin-right: 15px;
-  }
+icon-text {
+  margin-left: 10px;
+}
+
+.column {
+  margin-right: 15px;
+}
 </style>

@@ -38,6 +38,11 @@ export function getCurrentUserEmail() {
     return user.email;
 }
 
+export function getCurrentUser() {
+    let user = session.user as User;
+    return user;
+}
+
 export function getCurrentUserFullName() {
     let user = session.user as User;
     return user.fullName;

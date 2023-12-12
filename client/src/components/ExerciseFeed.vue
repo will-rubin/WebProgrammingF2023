@@ -1,12 +1,14 @@
 <script setup lang="ts">
 import { type Post, getAllPosts, filterPostsByUser, createPost, updatePost, deletePost } from '@/model/posts';
-import { getCurrentUserEmail, getCurrentUserFullName } from '@/model/session';
+import { getCurrentUserEmail, getCurrentUserFullName, getCurrentUser } from '@/model/session';
 import { ref } from 'vue';
 
 const posts = ref([] as Post[])
 const selectedPost = ref(null as Post | null)
 const isEditModalOpen = ref(false)
 const isAddModalOpen = ref(false)
+
+const user = getCurrentUser();
 
 await getAllPosts().then((data) => {
     posts.value = data;
@@ -140,7 +142,9 @@ const saveEditedPost = async (ePostCaption: string, ePostImageURL: string, ePost
                         <input class="input" type="number" v-model="newPostTimeStamp" placeholder="Duration">
                     </div>
                 </div>
-                <button class="button is-success" @click="addPost(newPostCaption, newPostImageURL, newPostLocation, newPostDistance, newPostDuration, newPostTimeStamp)">Add Post</button>
+                <button class="button is-success"
+                    @click="addPost(newPostCaption, newPostImageURL, newPostLocation, newPostDistance, newPostDuration, newPostTimeStamp)">Add
+                    Post</button>
             </div>
         </div>
     </div>
@@ -154,39 +158,43 @@ const saveEditedPost = async (ePostCaption: string, ePostImageURL: string, ePost
                 <article class="media-content">
                     <div class="media-content">
                         <div class="content">
-                            <p>
-                                <strong>{{ post.fullName }}</strong> <small>{{ post.author }}</small>
-                                <br>
-                                {{ post.caption }}
-                                <br>
-                            </p>
-                            <div class="level">
-                                <div class="level-item">
+                          <div class="card">
+
+                            <div class="card-image">
+                                <figure class="image is-4by3">
+                                    <img :src="post.imageURL" alt="Post image">
+                                </figure>
+                            </div>
+
+                            <div class="card-content">
+                                <div class="media">
+                                    <div class="media-left">
+                                        <figure class="image is-48x48">
+                                            <img :src="user.imageURL"
+                                                alt="Profile picture">
+                                        </figure>
+                                    </div>
                                     <div class="media-content">
-                                        <p class="image">
-                                            <img :src="post.imageURL" style="max-width: 300px; width: 100%">
-                                        </p>
+                                        <p class="title is-4">{{user.fullName}}</p>
+                                        <p class="subtitle is-6">{{ user.email }}</p>
                                     </div>
                                 </div>
-                                <div class="level-item">
-                                    <h2 class="title">Distance: {{ post.distance }} miles</h2>
+
+                                <div class="content">
+                                    {{  post.caption }}
+                                    <br>
+                                    <time :datetime="post.timestamp"></time>
                                 </div>
-                                <div class="level-item">
-                                    <h2 class="title">Duration: {{ post.duration }} minutes</h2>
-                                </div>
+
                             </div>
-                            <p>
-                                <small>{{ post.location }} </small>
-                                <br>
-                                <small>{{ post.timestamp }}</small>
-                            </p>
-                            <button @click="deletePostById(post.id)">Delete Post</button>
-                            <button @click="openEditModal(post)">Edit Post</button>
                         </div>
+                        <button @click="deletePostById(post.id)">Delete Post</button>
+                        <button @click="openEditModal(post)">Edit Post</button>
                     </div>
-                </article>
             </div>
+            </article>
         </div>
+    </div>
     </div>
     <!-- Modal -->
     <div v-if="isEditModalOpen" class="modal is-active">
@@ -225,11 +233,12 @@ const saveEditedPost = async (ePostCaption: string, ePostImageURL: string, ePost
                     </div>
                 </div>
             </div>
-            <button class="button is-success" @click="saveEditedPost(ePostCaption, ePostImageURL, ePostLocation, ePostDistance, ePostDuration)">Save changes</button>
-            
+            <button class="button is-success"
+                @click="saveEditedPost(ePostCaption, ePostImageURL, ePostLocation, ePostDistance, ePostDuration)">Save
+                changes</button>
+
         </div>
         <button class="modal-close is-large" aria-label="close" @click="closeEditModal()"></button>
-    </div>
-</template>
+    </div></template>
 
 <style scoped></style>

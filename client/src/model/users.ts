@@ -18,6 +18,11 @@ export async function getUser(id: number): Promise<User | undefined> {
   return users.find(u => u.id === id);
 }
 
+export async function getUserFromEmail(email: string): Promise<User | undefined> {
+  const users = await getUsers();
+  return users.find(u => u.email === email);
+}
+
 export async function createUser(user: User): Promise<User> {
   return await api("users", user, "POST") as User;
 }
@@ -32,6 +37,11 @@ export async function deleteUser(id: number) {
 
 export async function login(email: string, password: string): Promise<User> {
   return await api("users/login", { email, password }, "POST") as User;
+}
+
+export async function getImageURLFromEmail(email: string): Promise<string> {
+  const user = await getUserFromEmail(email);
+  return user?.imageURL ?? "";
 }
 
 
