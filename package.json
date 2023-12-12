@@ -4,23 +4,21 @@
     "description": "",
     "author": "",
     "license": "ISC",
-  
     "scripts": {
-      "build": "npm i --production && cd client && npm i && npm run build",
-      "start": "node server/index.js",
-      "dev": "nodemon --watch ./server server/index.js"
+        "build": "npm i --production && cd client && npm i && npm run build",
+        "start": "node server/index.js",
+        "dev": "nodemon --watch ./server server/index.js"
     },
     "dependencies": {
-      "express": "^4.17.20",
-      "dotenv": "^16.3.1",
-      "jsonwebtoken": "^9.0.2",
-      "mongodb": "^6.3.0",
-      "openai":"^4.20.1"
+        "dotenv": "^16.3.1",
+        "express": "^4.17.20",
+        "jsonwebtoken": "^9.0.2",
+        "mongodb": "^6.3.0",
+        "openai": "^4.0.0"
     },
     "devDependencies": {
-      "@types/node": "20.8.9",
-      "@types/express": "^4.17.20",
-      "nodemon": "^3.0.1"
+        "@types/express": "^4.17.20",
+        "@types/node": "20.8.9",
+        "nodemon": "^3.0.1"
     }
-  
-  }
+}

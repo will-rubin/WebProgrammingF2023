@@ -1,6 +1,10 @@
 //Let's not get carried away - just implement CRUD and leave the search for later.
+//@ts-check
+const { ObjectId, connect } = require('./mongo');
 
-const { ObjectId, connect } = require('./mongo')
+const { OpenAI } = require('openai');
+const openai = new OpenAI();
+
 
 /**
  * @typedef {Object} Post
@@ -24,32 +28,22 @@ async function getCollection() {
   return db.collection(COLLECTION_NAME);
 }
 
-const OpenAI = require('openai');
-const openai = new OpenAI(process.env.OPENAI_API_KEY);
 
-//generates a new imageURL using OpenAI's Dall-e model
+
+//generates a new imageURL using OpenAI's Dall-e model and returns the new imageURL
 /**
- * @param {number} id - The product's ID.
- * @param {string} caption - The caption for the image.
- * @param {string} location - The location of the image.
- * @returns {Promise<string>} - The generated imageURL.
+ * @param {Post} post - The post to be updated.
+ * @returns {Promise<Post>} - The updated post with the new imageURL.
  */
-async function generateImage(id, caption, location) {
-  const prompt = `${caption} at ${location} \nImage:`;
-  const gptResponse = await openai.complete({
-    engine: 'davinci',
+async function generateImage(post) {
+  const prompt = `${post.caption} in ${post.location} \nImage:`;
+  const response = await openai.images.generate({
     prompt: prompt,
-    maxTokens: 64,
-    temperature: 0.7,
-    topP: 1,
-    presencePenalty: 0,
-    frequencyPenalty: 0,
-    bestOf: 1,
     n: 1,
-    stream: false,
-    stop: '###',
+    size: "1024x1024"
   });
-  return gptResponse.data.choices[0].text.trim();
+  post.imageURL = response.data[0].url;
+  return await update(post);
 }
 
 //gets all the posts
@@ -114,7 +108,7 @@ async function update(post) {
     { $set: post },
     { returnDocument: 'after' },
   );
-  return result;
+  return result.value;
 
 }
 
@@ -131,12 +125,12 @@ async function remove(id) {
 }
 
 //Seeds the database with the data from posts.json
-async function seed() {
-  const col = await getCollection();
+// async function seed() {
+//   const col = await getCollection();
  
-  await col.insertMany(data.posts);
-}
+//   await col.insertMany(data.posts);
+// }
 
 module.exports = {
-    getAllPosts, get, search, create, update, remove, seed, generateImage
+    getAllPosts, get, search, create, update, remove, generateImage
 };

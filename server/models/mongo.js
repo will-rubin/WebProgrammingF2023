@@ -10,6 +10,7 @@ const client = new MongoClient(uri, {
     }
 });
 
+
 async function connect() {
     await client.connect();
     return client.db(MONGO_DB_NAME);

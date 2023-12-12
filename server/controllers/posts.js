@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllPosts, get, search, create, update, remove, seed, generateImage } = require('../models/posts.js');
+const { getAllPosts, get, search, create, update, remove, generateImage } = require('../models/posts.js');
 const router = express.Router();
 
 router.get('/', (req, res, next) => {
@@ -10,11 +10,7 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-.get('/generate', (req, res, next) => {
-    generateImage()
-    .then((imageURL) => {})
-    .catch(next)
-})
+
 
 .get('/:id', (req, res, next) => {
     get(+req.params.id)
@@ -48,6 +44,15 @@ router.get('/', (req, res, next) => {
 .patch('/:id', (req, res, next) => {
     req.body.id = +req.params.id;
     update(req.body)
+    .then((post) => {
+        res.send(post);
+    })
+    .catch(next)
+})
+
+.patch('/generate/:id', (req, res, next) => {
+    req.body.id = +req.params.id;
+    generateImage(req.body)
     .then((post) => {
         res.send(post);
     })
