@@ -11,7 +11,7 @@ async function parseAuthorizationToken(req, res, next) {
     req.user = payload;
     next();
   }
-async function requireUser(adminOnly = false){
+function requireUser(adminOnly = false){
     return function(req, res, next) {
       if (!req.user) {
         return next({

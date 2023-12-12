@@ -5,7 +5,7 @@ GET http://localhost:3000/api/v1/users/1
 DELETE http://localhost:3000/api/v1/posts/9
 
 ###
-GET http://localhost:3000/api/v1/users/search?query=John
+POST http://localhost:3000/api/v1/posts/search?q=searchExample
 
 ###
 GET http://localhost:3000/api/v1/posts
@@ -34,7 +34,7 @@ PATCH http://localhost:3000/api/v1/posts/1
 Content-Type: application/json
 
 {
-    "caption": "Scratch Test Successful again my friends"
+    "caption": "Check out this new test"
 }
 
 //create user
@@ -45,7 +45,8 @@ Content-Type: application/json
 {
     "fullName": "Moshe Plotkin",
     "email": "plotkinm@newpaltz.edu",
-    "password": "1231234"
+    "password": "1231234",
+    "role": "user"
 }
 
 //login user

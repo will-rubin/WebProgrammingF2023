@@ -1,6 +1,7 @@
 //Let's not get carried away - just implement CRUD and leave the search for later.
 
 const { ObjectId, connect } = require('./mongo')
+
 /**
  * @typedef {Object} Post
  * @property {number} id
@@ -21,6 +22,34 @@ const COLLECTION_NAME = 'posts';
 async function getCollection() {
   const db = await connect();
   return db.collection(COLLECTION_NAME);
+}
+
+const OpenAI = require('openai');
+const openai = new OpenAI(process.env.OPENAI_API_KEY);
+
+//generates a new imageURL using OpenAI's Dall-e model
+/**
+ * @param {number} id - The product's ID.
+ * @param {string} caption - The caption for the image.
+ * @param {string} location - The location of the image.
+ * @returns {Promise<string>} - The generated imageURL.
+ */
+async function generateImage(id, caption, location) {
+  const prompt = `${caption} at ${location} \nImage:`;
+  const gptResponse = await openai.complete({
+    engine: 'davinci',
+    prompt: prompt,
+    maxTokens: 64,
+    temperature: 0.7,
+    topP: 1,
+    presencePenalty: 0,
+    frequencyPenalty: 0,
+    bestOf: 1,
+    n: 1,
+    stream: false,
+    stop: '###',
+  });
+  return gptResponse.data.choices[0].text.trim();
 }
 
 //gets all the posts
@@ -50,7 +79,8 @@ async function get(id) {
 async function search(query) {
 
   const col = await getCollection();
-  return await col.find({ $text: { $search: query } }).toArray();
+  //console.log(query);
+  return await col.find({caption: query}).toArray();
 }
 
 //creates a new post
@@ -108,5 +138,5 @@ async function seed() {
 }
 
 module.exports = {
-    getAllPosts, get, search, create, update, remove, seed
+    getAllPosts, get, search, create, update, remove, seed, generateImage
 };
