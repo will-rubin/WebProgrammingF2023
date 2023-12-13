@@ -36,7 +36,7 @@ async function getCollection() {
  * @returns {Promise<Post>} - The updated post with the new imageURL.
  */
 async function generateImage(post) {
-  const prompt = `${post.caption} in ${post.location} \nImage:`;
+  const prompt = `A picture that someone would post on instagram with the caption ${post.caption}, at the gym in ${post.location}`;
   const response = await openai.images.generate({
     prompt: prompt,
     n: 1,
