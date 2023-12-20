@@ -83,7 +83,7 @@ async function create(user) {
 async function update(user) {
     const col = await getCollection();
     const result = await col.findOneAndUpdate(
-        { id: user.id },
+        { _id: user._id },
         { $set: user },
         { returnDocument: 'after' }
     );
@@ -92,13 +92,13 @@ async function update(user) {
 
 //deletes a user
 /**
- * @param {number} id - The user's ID.
+ * @param {ObjectId} _id - The user's ID.
  */
-async function remove(id) {
+async function remove(_id) {
     const col = await getCollection();
-    const result = await col.deleteOne({ id: id });
+    const result = await col.deleteOne({ _id: _id });
     if(result.deletedCount === 0) {
-        throw new Error(`User with id ${id} not found`);
+        throw new Error(`User with id ${_id} not found`);
     }
 }
 
