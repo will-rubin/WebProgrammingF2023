@@ -8,7 +8,7 @@ const openai = new OpenAI();
 
 /**
  * @typedef {Object} Post
- * @property {number} id
+ * @property {ObjectId} _id
  * @property {string} timestamp
  * @property {string} location
  * @property {string} caption
@@ -57,12 +57,12 @@ async function getAllPosts() {
 
 //gets a single post by its id
 /**
- * @param {number} id - The product's ID.
+ * @param {ObjectId} _id - The product's ID.
  * @returns {Promise<Post>} - The post.
  */
-async function get(id) {
+async function get(_id) {
     const col = await getCollection();
-    return await col.findOne({ id: id });
+    return await col.findOne({ _id: _id });
 }
 
 //search for a post 
@@ -83,9 +83,7 @@ async function search(query) {
  * @returns {Promise<Post>} - The created post.
  */
 async function create(post) {
-    const posts = await getAllPosts();
     const newPost = {
-      id: posts.length + 1,
       ...post,
     };
     
@@ -104,7 +102,7 @@ async function update(post) {
 
   const col = await getCollection();
   const result = await col.findOneAndUpdate(
-    { id: post.id },
+    { _id: post._id },
     { $set: post },
     { returnDocument: 'after' },
   );
@@ -114,13 +112,13 @@ async function update(post) {
 
 //deletes a post
 /**
- * @param {number} id - The post's ID.
+ * @param {ObjectId} _id - The post's ObjectId.
  */
-async function remove(id) {
+async function remove(_id) {
     const col = await getCollection();
-    const result = await col.deleteOne({ id: id });
+    const result = await col.deleteOne({ _id: _id });
     if(result.deletedCount === 0) {
-      throw new Error(`Post with id ${id} not found`);
+      throw new Error(`Post with ObjectId ${_id} not found`);
     }
 }
 

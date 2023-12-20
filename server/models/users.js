@@ -2,7 +2,7 @@
 const { ObjectId, connect } = require('./mongo')
 /**
  * @typedef {Object} User
- * @property {number} id
+ * @property {ObjectId} _id
  * @property {string} fullName
  * @property {string} email
  * @property {string} password
@@ -31,14 +31,14 @@ async function getAllUsers() {
     return await col.find({}).toArray();
 }
 
-//gets a single user by its id
+//gets a single user by its ObjectId
 /**
- * @param {number} id - The user's ID.
+ * @param {ObjectId} _id - The user's ID.
  * @returns {Promise<User>} - The user.
  */
-async function get(id) {
+async function get(_id) {
     const col = await getCollection();
-    return await col.findOne({ id: id });
+    return await col.findOne({ _id: _id });
 }
 
 //search for a user
@@ -66,7 +66,6 @@ async function search(query) {
 async function create(user) {
     const users = await getAllUsers();
     const newUser = {
-      id: users.length + 1,
         ...user,
     };
     
