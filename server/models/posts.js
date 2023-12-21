@@ -74,7 +74,7 @@ async function search(query) {
 
   const col = await getCollection();
   //console.log(query);
-  const posts = await col.find({caption: query}).toArray();
+  const posts = await col.find({ caption: { $regex: query, $options: 'i' } }).toArray();
   return posts;
 }
 

@@ -14,6 +14,10 @@ export async function getUsers(): Promise<User[]> {
   return await api("users") as User[];
 }
 
+export async function searchUsers(query: string): Promise<User[]> {
+  return await api(`users/search/${query}`) as User[];
+}
+
 export async function getUser(id: number): Promise<User | undefined> {
   const users = await getUsers();
   return users.find(u => u.id === id);
@@ -44,6 +48,7 @@ export async function getImageURLFromEmail(email: string): Promise<string> {
   const user = await getUserFromEmail(email);
   return user?.imageURL ?? "";
 }
+
 
 
 

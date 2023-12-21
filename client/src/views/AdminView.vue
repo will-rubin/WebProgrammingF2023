@@ -88,16 +88,17 @@ const addUser = async (newUserFullName: string, newUserEmail: string, newUserRol
             </div>
         </div>
     </div>
-    <div class="box">
-        <div class="columns">
-            <div class="column">
-                <button @click="openAddModal()">Add User</button>
-            </div>
-        </div>
-    </div>
+
 
     <div class="column">
         <div v-if="role === 'admin'">
+            <div class="box">
+                <div class="columns">
+                    <div class="column">
+                        <button @click="openAddModal()">Add User</button>
+                    </div>
+                </div>
+            </div>
             <h2>Users</h2>
             <table>
                 <thead>
@@ -133,106 +134,110 @@ const addUser = async (newUserFullName: string, newUserEmail: string, newUserRol
             <h2>Access Denied</h2>
         </div>
         <div v-if="isEditModalOpen" class="modal is-active">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box">
-                <h1 class="title">Edit User</h1>
-                <div class="field">
-                    <label class="label">ID</label>
-                    <div class="control">
-                        <input class="input" type="text" v-model="eUserID" placeholder="ID">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                    <h1 class="title">Edit User</h1>
+                    <div class="field">
+                        <label class="label">ID</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="eUserID" placeholder="ID">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="eUserEmail" placeholder="email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Full Name</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="eUserFullName" placeholder="Full Name">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="eUserPassword" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Role</label>
+                        <div class="control">
+                            <input class="input" type="number" v-model="eUserRole" placeholder="Role">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">ImageURL</label>
+                        <div class="control">
+                            <input class="input" type="number" v-model="eUserImageURL" placeholder="Image URL">
+                        </div>
                     </div>
                 </div>
-                <div class="field">
-                    <label class="label">Email</label>
-                    <div class="control">
-                        <input class="input" type="text" v-model="eUserEmail" placeholder="email">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Full Name</label>
-                    <div class="control">
-                        <input class="input" type="text" v-model="eUserFullName" placeholder="Full Name">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Password</label>
-                    <div class="control">
-                        <input class="input" type="text" v-model="eUserPassword" placeholder="Password">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Role</label>
-                    <div class="control">
-                        <input class="input" type="number" v-model="eUserRole" placeholder="Role">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">ImageURL</label>
-                    <div class="control">
-                        <input class="input" type="number" v-model="eUserImageURL" placeholder="Image URL">
-                    </div>
-                </div>
+                <button
+                    @click="editUser(eUserFullName ?? '', eUserEmail ?? '', eUserRole ?? '', eUserPassword ?? '', eUserImageURL ?? '', eUserID ?? 0)">Edit
+                    User</button>
             </div>
-            <button @click="editUser(eUserFullName ?? '', eUserEmail ?? '', eUserRole ?? '', eUserPassword ?? '', eUserImageURL ?? '', eUserID ?? 0)">Edit User</button>            
+            <button class="modal-close is-large" aria-label="close" @click="closeEditModal()"></button>
         </div>
-        <button class="modal-close is-large" aria-label="close" @click="closeEditModal()"></button>
-    </div>
-    <div v-if="isAddModalOpen" class="modal is-active">
-        <div class="modal-background"></div>
-        <div class="modal-content">
-            <div class="box">
-                <h1 class="title">Add User</h1>
-                <div class="field">
-                    <label class="label">ID</label>
-                    <div class="control">
-                        <input class="input" type="number" v-model="newUserID" placeholder="ID">
+        <div v-if="isAddModalOpen" class="modal is-active">
+            <div class="modal-background"></div>
+            <div class="modal-content">
+                <div class="box">
+                    <h1 class="title">Add User</h1>
+                    <div class="field">
+                        <label class="label">ID</label>
+                        <div class="control">
+                            <input class="input" type="number" v-model="newUserID" placeholder="ID">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="newUserEmail" placeholder="email">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Full Name</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="newUserFullName" placeholder="Full Name">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Password</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="newUserPassword" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Role</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="newUserRole" placeholder="Role">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">ImageURL</label>
+                        <div class="control">
+                            <input class="input" type="text" v-model="newUserImageURL" placeholder="Image URL">
+                        </div>
                     </div>
                 </div>
-                <div class="field">
-                    <label class="label">Email</label>
-                    <div class="control">
-                        <input class="input" type="text" v-model="newUserEmail" placeholder="email">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Full Name</label>
-                    <div class="control">
-                        <input class="input" type="text" v-model="newUserFullName" placeholder="Full Name">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Password</label>
-                    <div class="control">
-                        <input class="input" type="text" v-model="newUserPassword" placeholder="Password">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">Role</label>
-                    <div class="control">
-                        <input class="input" type="text" v-model="newUserRole" placeholder="Role">
-                    </div>
-                </div>
-                <div class="field">
-                    <label class="label">ImageURL</label>
-                    <div class="control">
-                        <input class="input" type="text" v-model="newUserImageURL" placeholder="Image URL">
-                    </div>
-                </div>
+                <button class="is-success"
+                    @click="addUser(newUserFullName ?? '', newUserEmail ?? '', newUserRole ?? '', newUserPassword ?? '', newUserImageURL ?? '', newUserID ?? 0)">Add
+                    User</button>
             </div>
-            <button class="is-success" @click="addUser(newUserFullName ?? '', newUserEmail ?? '', newUserRole ?? '', newUserPassword ?? '', newUserImageURL ?? '', newUserID ?? 0)">Add User</button>            
+            <button class="modal-close is-large" aria-label="close" @click="closeAddModal()"></button>
         </div>
-        <button class="modal-close is-large" aria-label="close" @click="closeAddModal()"></button>
-    </div>
     </div>
 </template>
 
 <style scoped>
-    .column {
-        top: 50px;
-    }
-    table {
-        border-collapse: collapse;
-        width: 100%;
-    }
-</style>
+.column {
+    top: 50px;
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}</style>

@@ -44,15 +44,15 @@ async function get(_id) {
 
 //search for a user
 /**
- * @param {string} query - The query string.
+
  * @returns {Promise<User[]>} - The filtered users.
  */
 async function search(query) {
     const col = await getCollection();
     const users = await col.find({
         $or: [
-            { fullName: { $regex: `${query}`, $options: 'i' } },
-            { email: { $regex: `${query}`, $options: 'i' } },
+            { fullName: { $regex: query, $options: 'i' } },
+            { email: { $regex: query, $options: 'i' } },
         ],
     }).toArray();
 

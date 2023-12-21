@@ -5,10 +5,10 @@ GET http://localhost:3000/api/v1/users/
 DELETE http://localhost:3000/api/v1/posts/9
 
 ###
-POST http://localhost:3000/api/v1/posts/search?q=searchExample
+POST http://localhost:3000/api/v1/posts/search?q=s
 
 ###
-POST http://localhost:3000/api/v1/users/search?q=jane
+POST http://localhost:3000/api/v1/users/search?q=j
 
 ###
 GET http://localhost:3000/api/v1/posts

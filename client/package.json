@@ -12,9 +12,12 @@
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.4",
     "bulma": "^0.9.4",
+    "primevue": "^3.44.0",
+    "@oruga-ui/oruga-next": "^0.8.2",
     "vue": "^3.3.4",
     "vue-router": "^4.2.4",
-    "vue-toastification": "2.0.0-rc.5"
+    "vue-toastification": "2.0.0-rc.5",
+    "vue3-simple-typeahead": "^1.0.11"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.2",
@@ -22,7 +25,7 @@
     "@vitejs/plugin-vue": "^4.3.4",
     "@vitejs/plugin-vue-jsx": "^3.0.2",
     "@vue/tsconfig": "^0.4.0",
-    "jsdom":"^23.0.1",
+    "jsdom": "^23.0.1",
     "npm-run-all2": "^6.0.6",
     "sass": "^1.68.0",
     "typescript": "^5.2.0",
