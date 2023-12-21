@@ -9,6 +9,8 @@ const posts = ref<Post[]>([]);
 await getAllPosts().then((data) => {
   posts.value = data;
 });
+
+const friendsList = ref<string[]>([]);
 </script>
 
 <template>
@@ -16,7 +18,24 @@ await getAllPosts().then((data) => {
     <div class="panel">
         <p class="panel-heading has-text-centered">
             <h1 class="title">Your Friends' Posts</h1>
-            <h1 class="subtitle">Sign in to see everyone's posts but yours</h1>
+            <div class="box">
+                <div class="field">
+                    <label class="label">Search for Friends</label>
+                    <div class="control">
+                        <input class="input" type="text" placeholder="Search for friends" v-model="search">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label">Friends List</label>
+                    <div class="control">
+                        <div class="select">
+                            <select>
+                                <option v-for="friend in friendsList" :key="friend.id">{{ friend }}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </p>
         <div class="panel-block" v-for="post in posts" :key="post.id">
             <article class="media-content" v-if="post.author != user?.email">

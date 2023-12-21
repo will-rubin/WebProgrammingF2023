@@ -8,7 +8,7 @@ const openai = new OpenAI();
 
 /**
  * @typedef {Object} Post
- * @property {ObjectId} _id
+ * @property {number} id
  * @property {string} timestamp
  * @property {string} location
  * @property {string} caption
@@ -80,17 +80,19 @@ async function search(query) {
 //creates a new post
 /**
  * @param {Post} post - The post to be created.
- * @returns {Promise<Post>} - The created post.
+ * @returns {Promise<import('mongodb').InsertOneResult>} - The created post.
  */
 async function create(post) {
+    const col = await getCollection();
     const newPost = {
+      id: await col.countDocuments() + 1, 
       ...post,
     };
     
-    const col = await getCollection();
+    
     const result = await col.insertOne(newPost);
-    newPost._id = result._id;
-    return newPost;
+    
+    return result;
 }
 
 //updates a post
@@ -102,7 +104,7 @@ async function update(post) {
 
   const col = await getCollection();
   const result = await col.findOneAndUpdate(
-    { _id: post._id },
+    { id: post.id },
     { $set: post },
     { returnDocument: 'after' },
   );

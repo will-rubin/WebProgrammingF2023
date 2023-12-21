@@ -2,7 +2,7 @@
 const { ObjectId, connect } = require('./mongo')
 /**
  * @typedef {Object} User
- * @property {ObjectId} _id
+ * @property {number} id
  * @property {string} fullName
  * @property {string} email
  * @property {string} password
