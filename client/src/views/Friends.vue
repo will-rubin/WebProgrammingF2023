@@ -6,15 +6,17 @@ import { type Post, getAllPosts } from '@/model/posts';
 const user = getSession().user;
 
 const posts = ref<Post[]>([]);
+const friendsList = ref(user?.friends ?? []);
 await getAllPosts().then((data) => {
-  posts.value = data;
+    posts.value = data.filter(post => friendsList.value.includes(post.author));
 });
 
-const friendsList = ref<string[]>([]);
+
+const search = ref('');
 </script>
 
 <template>
-  <div class="column"> <!-- exercise feed-->
+  <div class="column"> 
     <div class="panel">
         <p class="panel-heading has-text-centered">
             <h1 class="title">Your Friends' Posts</h1>
@@ -30,7 +32,7 @@ const friendsList = ref<string[]>([]);
                     <div class="control">
                         <div class="select">
                             <select>
-                                <option v-for="friend in friendsList" :key="friend.id">{{ friend }}</option>
+                                <option v-for="friend in friendsList" :key="friend">{{ friend }}</option>
                             </select>
                         </div>
                     </div>

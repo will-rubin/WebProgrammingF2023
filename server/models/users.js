@@ -8,6 +8,7 @@ const { ObjectId, connect } = require('./mongo')
  * @property {string} password
  * @property {string} imageURL
  * @property {string} role
+ * @property {Array<string>} friends
  */
 
 

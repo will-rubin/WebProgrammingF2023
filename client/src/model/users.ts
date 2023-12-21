@@ -7,6 +7,7 @@ export interface User {
   password: string
   role: string
   imageURL: string
+  friends: string[]
 }
 
 export async function getUsers(): Promise<User[]> {

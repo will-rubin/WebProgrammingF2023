@@ -12,9 +12,8 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
-.get('/search', (req, res, next) => {
-    const query = JSON.stringify(req.query.q)
-    search(query)
+.post('/search', (req, res, next) => {
+    search(req.query.q)
     .then(users => {
         res.send(users);
     })

@@ -74,7 +74,8 @@ async function search(query) {
 
   const col = await getCollection();
   //console.log(query);
-  return await col.find({caption: query}).toArray();
+  const posts = await col.find({caption: query}).toArray();
+  return posts;
 }
 
 //creates a new post
