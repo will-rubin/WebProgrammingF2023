@@ -19,12 +19,18 @@ const session = reactive({
 });
 
 export function api(action: string, body?: unknown, method?: string, headers?: any) {
+    console.log("session.ts api action: " + action)
+    console.log("session.ts api body: " + body)
+    console.log("session.ts api method: " + method)
+    console.log("session.ts api headers: " + headers)
     session.loading++;
     if(session.token) {
         headers = headers ?? {};
         headers.Authorization = `Bearer ${session.token}`;
     }
     return myFetch.api(`${action}`, body, method, headers)
+        
+        
         .catch(err => showError(err))
         .finally(() => session.loading--);
 }

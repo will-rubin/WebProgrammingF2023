@@ -77,7 +77,7 @@ function getMoreAsyncData() {
                 <o-field label="Find a user">
                     <o-autocomplete :data="data" placeholder="e.g. john" field="email" :loading="isFetching"
                         check-scroll open-on-focus :debounce="500" @input="getMyData"
-                        @select="(option: User) => (selected = option)" @scroll-end="getMoreAsyncData">
+                        @select="(option: User) => (selected = option)">
                         <template #default="props">
                             <div class="media">
                                 <div class="media-left">
@@ -88,11 +88,7 @@ function getMoreAsyncData() {
                                 </div>
                             </div>
                         </template>
-                        <template v-if="page > totalPages" #footer>
-                            <span class="ex-text-grey">
-                                Thats it! No more movies found.
-                            </span>
-                        </template>
+                        
                     </o-autocomplete>
                 </o-field>
                 <p><b>Selected:</b> {{ selected }}</p>
