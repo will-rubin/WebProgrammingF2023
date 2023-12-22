@@ -36,9 +36,3 @@ export async function deletePost(id: number){
 export function filterPostsByUser(posts: Post[], email: string): Post[] {
   return posts.filter(post => post.author === email);
 }
-
-export function getUserFromPost(post: Post): string {
-  const name = post.fullName;
-  
-
-}

@@ -29,17 +29,19 @@ const eUserEmail = ref(selectedUser.value?.email)
 const eUserRole = ref(selectedUser.value?.role)
 const eUserPassword = ref(selectedUser.value?.password)
 const eUserImageURL = ref(selectedUser.value?.imageURL)
+const eUserFriends = ref(selectedUser.value?.friends)
 
 const editUser = async (eUserFullName: string, eUserEmail: string, eUserRole: string, eUserPassword: string, eUserImageURL: string, eUserID: number) => {
-    const newUser = {
+    const editedUser = {
         id: eUserID,
         fullName: eUserFullName,
         email: eUserEmail,
         role: eUserRole,
         password: eUserPassword,
-        imageURL: eUserImageURL
+        imageURL: eUserImageURL,
+        friends: []
     }
-    await updateUser(newUser)
+    await updateUser(editedUser)
     await getUsers().then((data) => {
         users.value = data
     })
@@ -68,7 +70,8 @@ const addUser = async (newUserFullName: string, newUserEmail: string, newUserRol
         email: newUserEmail,
         role: newUserRole,
         password: newUserPassword,
-        imageURL: newUserImageURL
+        imageURL: newUserImageURL,
+        friends: []
     }
     await createUser(newUser)
     await getUsers().then((data) => {
