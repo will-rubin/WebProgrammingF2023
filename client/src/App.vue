@@ -16,9 +16,11 @@ const session = getSession()
       <Suspense>
         <Sidebar />
       </Suspense>
+      <progress class="progress is-small is-primary is-striped" max="100" v-if="session.loading">15%</progress>
+      <progress class="progress is-small is-primary is-striped" value="100" max="100" v-else></progress>
     </div>
     <div class="column">
-      <progress class="progress is-small is-primary is-striped" max="100" v-if="session.loading">15%</progress>
+      
       <Suspense>
         <RouterView />
       </Suspense>

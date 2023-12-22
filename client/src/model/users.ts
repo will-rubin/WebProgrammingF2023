@@ -16,7 +16,7 @@ export async function getUsers(): Promise<User[]> {
 
 export async function searchUsers(query: string): Promise<User[]> {
   console.log(query);
-  return await api("users/search", query, "POST") as User[];
+  return await api(`users/search?q=${query}`, "", "POST") as User[];
 }
 
 export async function getUser(id: number): Promise<User | undefined> {
